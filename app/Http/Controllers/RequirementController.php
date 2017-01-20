@@ -2,9 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Models\User;
+use App\Models\Subject;
+use App\Models\Requirement;
+use Validator;
+
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RequirementController extends Controller
 {
@@ -15,7 +26,25 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        //
+        $user = \Auth::user();
+
+        if ($user->hasRole('supervisor') || $user->hasRole('super administrador')) {
+            $requirements = Requirement::all();
+            $total_requirements = $requirements->count();
+        } elseif ($user->hasRole('analista')) {
+            $requirements = $user->assignments;
+            $total_requirements = $requirements->count();
+        } elseif ($user->hasRole('usuario')) {
+            $requirements = $user->requirements;
+            $total_requirements = $requirements->count();
+        }
+
+        return view('requirements.show', [
+                'user'                    => $user,
+                'requirements'            => $requirements,
+                'total_requirements'      => $total_requirements
+            ]
+        );
     }
 
     /**

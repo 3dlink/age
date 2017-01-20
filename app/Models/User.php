@@ -104,6 +104,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany('App\Models\Report');
     }
 
+    public function assignments(){
+        return $this->hasMany('App\Models\Requirement', 'assigned_to');
+    }
+
+    public function requirements(){
+        return $this->hasMany('App\Models\Requirement', 'created_by');
+    }
     // public function assignRole($role)
     // {
     //     return $this->roles()->attach($role);

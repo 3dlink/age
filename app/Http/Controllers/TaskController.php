@@ -34,7 +34,7 @@ class TaskController extends Controller
             $total_tasks = $tasks->count();
         } elseif ($user->hasRole('analista')) {
             $tasks = $user->tasks;
-            $total_tasks = Task::where('user_id', $user->id)->count();
+            $total_tasks = $tasks->count();
         }
 
         return view('tasks.show', [

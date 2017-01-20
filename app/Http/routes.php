@@ -89,6 +89,9 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses' 		=> 'ProfilesController@edit'
 	]);
 
+	Route::resource('report', 'ReportController');
+	Route::resource('requirement', 'RequirementController');
+
 });
 
 // ADMINISTRATOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH ADMINISTRATOR MIDDLEWARE
@@ -107,8 +110,6 @@ Route::group(['middleware' => 'administrator'], function () {
 Route::group(['middleware' => 'analyst'], function(){
 	Route::resource('task', 'TaskController');
 });
-
-Route::resource('report', 'ReportController');
 
 // // EDITOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH EDITOR MIDDLEWARE
 // Route::group(['middleware' => 'editor'], function () {

@@ -12,10 +12,15 @@ class CreateRequirementsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('requirements', function (Blueprint $table) {
-        //     $table->increments('id');
-        //     $table->timestamps();
-        // });
+        Schema::create('requirements', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('subject_id');
+            $table->string('archive');
+            $table->string('description');
+            $table->integer('created_by');
+            $table->integer('assigned_to');
+            $table->timestamps();
+        });
     }
 
     /**
