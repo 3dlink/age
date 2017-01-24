@@ -57,6 +57,14 @@ Route::get('images/profile/{id}/pics/{image}', [
 	'uses' 		=> 'ProfilesController@userProfilePicImage'
 ]);
 
+Route::get('files/users/{id}/reports/{report}', [
+	'uses'		=> 'ReportController@getReport'
+]);
+
+Route::get('files/users/{user}/requirements/{id}/{file}', [
+	'uses'		=> 'RequirementController@getRequirementFile'
+]);
+
 // USER PAGE ROUTES - RUNNING THROUGH AUTH MIDDLEWARE
 Route::group(['middleware' => 'auth'], function () {
 
@@ -79,6 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
 				]
 			);
 	});
+
 	Route::get('profile/{username}', [
 		'as' 		=> 'profile.show',
 		'uses' 		=> 'ProfilesController@show'
@@ -91,7 +100,22 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('report', 'ReportController');
 	Route::resource('requirement', 'RequirementController');
+	Route::resource('task', 'TaskController');
 
+	Route::get('/assignments', [
+		'as'		=> 'assignments',
+		'uses'		=>	'UsersManagementController@getAssignedAnalystsView'
+	]);
+
+	Route::get('analyst', [
+		'as'		=> 'analysts',
+		'uses'		=> 'TaskController@getAssignedAnalystsView'
+	]);
+
+	Route::get('analyst/{analyst}', [
+		'as'		=> 'analyst.tasks',
+		'uses'		=> 'TaskController@getAnalystTasks'
+	]);
 });
 
 // ADMINISTRATOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH ADMINISTRATOR MIDDLEWARE
@@ -105,10 +129,49 @@ Route::group(['middleware' => 'administrator'], function () {
 		'uses' 			=> 'UsersManagementController@showUsersMainPanel'
 	]);
 
+	Route::get('/assign', [
+		'as'		=> 'analyst.assign',
+		'uses'		=> 'UsersManagementController@getAssignAnalystsView'
+	]);
+
+	Route::delete('/assign/{client}', [
+		'as'		=> 'analyst.unassign',
+		'uses'		=> 'UsersManagementController@unassignAnalysts'
+	]);
+
+	Route::get('/assign/{client}/edit', [
+		'as'		=> 'analyst.edit',
+		'uses'		=>	'UsersManagementController@getEditAnalystsView'
+	]);
+
+	Route::put('/assign/{client}', [
+		'as'		=> 'analyst.update',
+		'uses'		=>	'UsersManagementController@updateAnalystsAssignment'
+	]);
+
+	Route::post('/assign', [
+		'as'		=> 'analyst.assignment',
+		'uses'		=>	'UsersManagementController@assignAnalysts'
+	]);
+
 });
 
-Route::group(['middleware' => 'analyst'], function(){
-	Route::resource('task', 'TaskController');
+Route::group(['middleware' 	=> 	'analyst'], function(){
+	
+});
+
+Route::group(['middleware'	=>	'supervisor'], function(){
+	Route::resource('requirement/assign', 'AssignRequirementController', [
+					'only' 	=> [
+						'store',
+						'edit',
+						'update'
+					]]);
+
+	Route::get('requirement/assign/create/{id}', [
+		'as'		=> 'requirement/assign.new',
+		'uses'		=> 'AssignRequirementController@create'
+	]);
 });
 
 // // EDITOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH EDITOR MIDDLEWARE

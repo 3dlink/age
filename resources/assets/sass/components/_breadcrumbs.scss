@@ -14,7 +14,8 @@
       &.active {
         a {
           @include disable-link();
-          color: darken($theme_color1, 100%);
+          // color: darken($theme_color1, 100%);
+          font-weight: bold;
         }
       }
     }
@@ -24,7 +25,7 @@
   }
   .material-icons {
     padding: 0 10px;
-    color: #E9A7A1;
+    color: rgb(83,109,254);
     line-height: 1;
     vertical-align: -6px;
   }

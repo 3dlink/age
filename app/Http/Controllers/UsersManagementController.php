@@ -67,12 +67,9 @@ class UsersManagementController extends Controller {
         $total_users_new        = \DB::table('users')->where('active', '0')->count();
 
         return view('admin.show-users', [
-          'user' 			          => $user,
+          'user' 			        => $user,
           'users'                   => $users,
-          'total_users'             => $total_users,
-          'total_users_confirmed'   => $total_users_confirmed,
-          'total_users_locked'      => $total_users_locked,
-          'total_users_new'         => $total_users_new
+          'total_users'             => $total_users
           ]
           );
     }
@@ -329,4 +326,124 @@ class UsersManagementController extends Controller {
         return Image::make(storage_path() . '/users/id/' . $id . '/uploads/images/profile-pics/' . $image)->response();
     }
 
+    public function getAssignedAnalystsView()
+    {
+        if (\Auth::user()->role_id == 4) {
+            $user = \Auth::user();
+            $analysts = \Auth::user()->analysts;
+            return view('admin.show-users', [
+              'user'                    => $user,
+              'users'                   => $analysts,
+              'total_users'             => 1
+              ]
+              );
+        } else {
+            $analysts = User::wherein('role_id', [2,3])->get();
+            $clients = [];
+            foreach ($analysts as $a_analyst) {
+                foreach ($a_analyst->clients as $client) {
+                    array_push($clients, $client->id);
+                }
+            }
+
+            $clients = User::wherein('id', array_unique($clients))->get();
+            // dd($clients);
+            $total_clients = $clients->count();
+        }
+
+        // dd($clients->analysts);
+        return view('admin.assignments', [
+            'clients'       => $clients,
+            'total_clients' => $total_clients
+            ]);
+    }
+
+    public function getAssignAnalystsView()
+    {
+        $clients = User::where('role_id', 4)->get();
+        $usersArray = array();
+        $usersArray[''] = '';
+        foreach ($clients as $a_user) {
+            if ($a_user->analysts()->count() == 0) {
+                $usersArray[$a_user->id] = $a_user->first_name." ".$a_user->last_name;
+            }        
+        }
+        $analysts = User::wherein('role_id', [2,3])->get();
+
+        return view('admin.assign', [
+            'clients'   => $usersArray,
+            'analysts'  => $analysts
+            ]);
+    }
+
+    public function assignmentValidator(array $data)
+    {
+        return Validator::make($data, [
+            'client'        => 'required|exists:users,id'
+            ]);
+    }
+
+    public function assignAnalysts(Request $request)
+    {
+        $assignmentValidator = $this->assignmentValidator($request->all());
+
+        if ($assignmentValidator->fails()) {
+            $this->throwValidationException(
+                $request, $assignmentValidator
+                );
+        } else {
+            $client = User::find($request->input('client'));
+
+            $analysts = [];
+
+            $array = array_slice($request->input(), 2);
+
+            foreach ($array as $analyst => $id) {
+                array_push($analysts, $id);
+            }
+
+            $client->analysts()->attach($analysts);
+        }
+
+        return redirect('assignments')->with('status', 'Successfully assigned analysts!');
+    }
+
+    public function unassignAnalysts($id)
+    {
+        $client = User::find($id);
+        $client->analysts()->detach();
+
+        return redirect('assignments')->with('status', 'Successfully deleted analysts assignment!');
+    }
+
+    public function getEditAnalystsView($id)
+    {
+        $client = User::find($id);
+        $analysts = User::wherein('role_id', [2,3])->get();
+
+        $clientsArray[$client->id] = $client->first_name." ".$client->last_name;
+
+        return view('admin.reassign', [
+            'client'        => $client,
+            'clients'       => $clientsArray,
+            'analysts'      => $analysts
+            ]);
+    }
+
+    public function updateAnalystsAssignment($id, Request $request)
+    {
+        $client = User::find($id);
+
+        $analysts = [];
+
+        $array = array_slice($request->input(), 3);
+
+        foreach ($array as $analyst => $id) {
+            array_push($analysts, $id);
+        }
+        $client->analysts()->detach();
+        $client->analysts()->attach($analysts);
+
+        return redirect('assignments')->with('status', 'Successfully updated analysts assignment!');
+    }
 }

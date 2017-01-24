@@ -15,10 +15,12 @@ class CreateRequirementsTable extends Migration
         Schema::create('requirements', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('subject_id');
+            $table->integer('priority_id');
             $table->string('archive');
+            $table->string('file_ext');
             $table->string('description');
             $table->integer('created_by');
-            $table->integer('assigned_to');
+            $table->integer('assigned_to')->nullable();
             $table->timestamps();
         });
     }

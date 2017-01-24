@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-01-2017 a las 05:10:57
+-- Tiempo de generación: 23-01-2017 a las 19:04:04
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -19,6 +19,25 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `age`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `analyst_client`
+--
+
+CREATE TABLE `analyst_client` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `analyst_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `analyst_client`
+--
+
+INSERT INTO `analyst_client` (`id`, `analyst_id`, `client_id`) VALUES
+(9, 13, 11);
 
 -- --------------------------------------------------------
 
@@ -51,7 +70,8 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2017_01_20_004514_create_priorities_table', 4),
 ('2017_01_20_004809_create_subjects_table', 4),
 ('2017_01_20_004852_create_requirements_table', 5),
-('2017_01_20_005415_subject_priority_table', 5);
+('2017_01_20_005415_subject_priority_table', 5),
+('2017_01_23_150609_create_analyst_client_table', 6);
 
 -- --------------------------------------------------------
 
@@ -112,7 +132,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `bio`, `phone`, `skype_user`, `profile_pic`, `created_at`, `updated_at`, `user_profile_bg`) VALUES
-(7, 10, '', '04242337767', 'daniel.corcega', NULL, '2017-01-17 23:26:43', '2017-01-20 04:44:10', 'default-user-bg.jpg'),
+(7, 10, '', '04242337767', 'daniel.corcega', '/images/profile/10/pics/user-pic.gif', '2017-01-17 23:26:43', '2017-01-23 16:55:50', 'default-user-bg.jpg'),
 (8, 11, '', '04242337767', 'daniel.corcega', '', '2017-01-18 03:17:44', '2017-01-18 03:17:44', 'default-user-bg.jpg'),
 (9, 12, '', '', 'daniel.corcega', '', '2017-01-18 03:23:45', '2017-01-18 03:23:45', 'default-user-bg.jpg'),
 (10, 13, '', '', '', '', '2017-01-19 17:13:49', '2017-01-19 17:13:49', 'default-user-bg.jpg'),
@@ -141,7 +161,8 @@ CREATE TABLE `reports` (
 --
 
 INSERT INTO `reports` (`id`, `name`, `storage`, `extension`, `description`, `belongs_to`, `uploaded_by`, `created_at`, `updated_at`) VALUES
-(3, 'tests2', '/files/users/10/reports/tests2.pdf', 'pdf', 'asdasd', 15, 10, '2017-01-20 01:36:27', '2017-01-20 01:39:42');
+(3, 'tests test', '/files/users/10/reports/tests_test.pdf', 'pdf', 'asdasd', 15, 10, '2017-01-20 01:36:27', '2017-01-23 16:38:40'),
+(4, 'cbh dia', '/files/users/10/reports/cbh_dia.pdf', 'pdf', 'sadasdad', 11, 10, '2017-01-23 16:33:46', '2017-01-23 16:33:46');
 
 -- --------------------------------------------------------
 
@@ -278,6 +299,12 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password
 --
 
 --
+-- Indices de la tabla `analyst_client`
+--
+ALTER TABLE `analyst_client`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -341,6 +368,11 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `analyst_client`
+--
+ALTER TABLE `analyst_client`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
 -- AUTO_INCREMENT de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
@@ -359,7 +391,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT de la tabla `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --

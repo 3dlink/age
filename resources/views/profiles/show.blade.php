@@ -25,13 +25,22 @@
 		<meta itemprop="position" content="1" />
 	</li>
 
-	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active">
-		<a itemprop="item" href="{{ url('/profile/'.Auth::user()->name) }}" class="hidden">
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="{{ url('/users') }}">
 			<span itemprop="name">
-				{{ Lang::get('titles.profile') }}
+				Users List
 			</span>
 		</a>
-		{{ Lang::get('titles.profile') }}
+		<i class="material-icons">chevron_right</i>
+		<meta itemprop="position" content="2" />
+	</li>
+
+	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="#" disabled>
+			<span itemprop="name">
+				User Profile
+			</span>
+		</a>
 		<meta itemprop="position" content="2" />
 	</li>
 

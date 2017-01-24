@@ -108,7 +108,7 @@ dialog + .backdrop {
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
 		<a href="{{ url('/subject/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
-			<i class="material-icons">person_add</i>
+			<i class="material-icons">add</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
 			<label class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--icon" for="search_table">

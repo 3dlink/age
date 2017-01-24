@@ -26,8 +26,13 @@
 		<i class="material-icons">chevron_right</i>
 		<meta itemprop="position" content="1" />
 	</li>
-	<li class="active">
-		{{ Lang::get('titles.home') }}
+	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="#" disabled>
+			<span itemprop="name">
+				Home
+			</span>
+		</a>
+		<meta itemprop="position" content="2" />
 	</li>
 
 @endsection

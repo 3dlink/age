@@ -42,10 +42,10 @@ class ReportController extends Controller
             $total_reports = $reports->count();
         } elseif ($user->hasRole('analista')) {
             $reports = $user->uploads;
-            $total_reports = Report::where('uploaded_by', $user->id)->count();
+            $total_reports = $reports->count();
         } elseif ($user->hasRole('usuario')) {
             $reports = $user->reports;
-            $total_reports = Report::where('belongs_to', $user->id)->count();
+            $total_reports = $reports->count();
         }
 
         return view('reports.show', [
@@ -227,12 +227,16 @@ class ReportController extends Controller
                 $report->extension  = $upload->getClientOriginalExtension();
             } else {
                 if ($report->name != $request->input('name')) {
+
                     $save_path          = '\users\id\\' . $report->owner->id . '\uploads\reports\\';
                     rename(
                         storage_path(). $save_path. str_replace(' ', '_', $report->name) . '.' . $report->extension,
                         storage_path(). $save_path. str_replace(' ', '_', $request->input('name')) . '.' . $report->extension
                     );
-                    $report->name = $request->input('name');
+                    $report->name       = $request->input('name');
+                    $filename           = str_replace(' ', '_', $report->name) .'.' . $report->extension;
+                    $file               = '/files/users/' . $report->owner->id . '/reports/' . $filename;
+                    $report->storage    = $file;
                 }
             }
 
@@ -261,5 +265,16 @@ class ReportController extends Controller
         $report->delete();
 
         return redirect('report')->with('status', 'Successfully deleted the report!');
+    }
+
+    public function getReport($id, $report)
+    {
+        // return Image::make(storage_path() . '/users/id/' . $id . '/uploads/images/profile-pics/' . $image)->response();
+
+        $file_url = storage_path() . '\users\id\\' . $id . '\uploads\reports\\' . $report;
+        header('Content-Type: application/octet-stream');
+        header("Content-Transfer-Encoding: Binary"); 
+        header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\"");
+        readfile($file_url);
     }
 }

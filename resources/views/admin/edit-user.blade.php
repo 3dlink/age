@@ -63,7 +63,9 @@ dialog + .backdrop {
 
 	<div class="mdl-grid full-grid margin-top-0 padding-0">
 		<div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
-
+			<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
+				<h2 class="mdl-card__title-text">Editing {{$user->name}}'s account</h2>
+			</div>
 			{!! Form::model($user, array('action' => array('UsersManagementController@update', $user->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
 
 				<div class="mdl-card card-wide" style="width:100%;" itemscope itemtype="http://schema.org/Person">

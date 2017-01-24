@@ -26,6 +26,6 @@ class SubjectPriorityTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('subject_priority');
     }
 }

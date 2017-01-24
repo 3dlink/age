@@ -11,4 +11,9 @@ class Task extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function client()
+    {
+    	return $this->belongsTo('App\Models\User', 'client_id');
+    }
 }

@@ -162,6 +162,8 @@ return [
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
 	/*
@@ -221,6 +223,8 @@ return [
 
         // ADD IMAGE HANGLING - https://github.com/Intervention/image
         'Image'         => Intervention\Image\Facades\Image::class,
+
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 	],
 

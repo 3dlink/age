@@ -42,6 +42,16 @@ float: left;
 </li>
 
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+	<a itemprop="item" href="{{ url('/users') }}">
+		<span itemprop="name">
+			Users List
+		</span>
+	</a>
+	<i class="material-icons">chevron_right</i>
+	<meta itemprop="position" content="2" />
+</li>
+
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ url('/profile/'.Auth::user()->name) }}">
 		<span itemprop="name">
 			{{ Lang::get('titles.profile') }}
@@ -50,14 +60,13 @@ float: left;
 	<i class="material-icons">chevron_right</i>
 	<meta itemprop="position" content="2" />
 </li>
-<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active">
-	<a itemprop="item" href="{{ url('/profile/'.Auth::user()->name.'/edit') }}" class="hidden">
+<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+	<a itemprop="item" href="#" disabled>
 		<span itemprop="name">
-			{{ Lang::get('titles.editProfile') }}
+			Edit Profile
 		</span>
 	</a>
-	<meta itemprop="position" content="3" />
-	{{ Lang::get('titles.editProfile') }}
+	<meta itemprop="position" content="2" />
 </li>
 
 @endsection
@@ -68,6 +77,10 @@ float: left;
 
 <div class="mdl-grid full-grid margin-top-0 padding-0">
 	<div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+
+		<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
+			<h2 class="mdl-card__title-text">Editing {{$user->first_name.' '.$user->last_name}}'s profile</h2>
+		</div>
 
 		{!! Form::model($user->profile, ['method' => 'PATCH', 'route' => ['profile.update', $user->name],  'class' => '', 'role' => 'form', 'enctype' => 'multipart/form-data' ]) !!}
 		<div class="mdl-card card-wide" style="width:100%;" itemscope itemtype="http://schema.org/Person">
@@ -139,14 +152,14 @@ float: left;
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="file_upload_container">
 									<div id="file_upload_text_div" class="mdl-textfield mdl-js-textfield">
-										<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" />
+										<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" accept="image/*"/>
 										<label class="mdl-textfield__label profile_pic_label" for="file_upload_text">Profile picture</label>
 									</div>
 									<div class="file_upload_btn">
 										<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white">
 											<i class="material-icons">wallpaper</i>
 
-											{!! Form::file('user_profile_pic',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input')) !!}
+											{!! Form::file('user_profile_pic',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input', 'accept'=> "image/*" )) !!}
 										</label>
 									</div>
 								</div>

@@ -26,7 +26,7 @@
 		@yield('template_linked_fonts')
 
 		{{-- STYLESHEETS --}}
-		{!! HTML::style(asset('https://code.getmdl.io/1.1.3/material.grey-red.min.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
+		{!! HTML::style(asset('https://code.getmdl.io/1.3.0/material.cyan-pink.min.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 		{!! HTML::style(elixir('css/app.css'), array('type' => 'text/css', 'rel' => 'stylesheet')) !!}
 
 		@yield('template_linked_css')

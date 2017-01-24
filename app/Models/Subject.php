@@ -10,4 +10,9 @@ class Subject extends Model
     {
         return $this->belongsToMany('App\Models\Priority', 'subject_priority');
     }
+
+    public function requirements()
+    {
+    	return $this->hasMany('App\Models\Requirement');
+    }
 }

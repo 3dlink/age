@@ -103,6 +103,17 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 							</div>
 
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('client') ? 'is-invalid' :'' }}">
+										{!! Form::select('client', $clients, $task->client_id, array('class' => 'mdl-selectfield__select mdl-textfield__input', 'id' => 'client')) !!}
+									    <label for="client">
+									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+									    </label>
+										{!! Form::label('client', 'Assign client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error">Select client</span>
+									</div>
+								</div>
+
+							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('date') ? 'is-invalid' :'' }}">
 								{!! Form::text('date', date('Y-m-d', strtotime($task->fecha)), array('id' => 'date', 'class' => 'mdl-textfield__input')) !!}
 									{!! Form::label('date', 'Date', array('class' => 'mdl-textfield__label')); !!}
@@ -127,7 +138,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('type') ? 'is-invalid' :'' }}">
-									{!! Form::select('type', array('' => '', '1' => 'Presencial', '2' => 'Distancia'), $task->tipo, array('class' => 'mdl-selectfield__select mdl-textfield__input', 'id' => 'type')) !!}
+									{!! Form::select('type', array('1' => 'Presencial', '2' => 'Distancia'), $task->tipo, array('class' => 'mdl-selectfield__select mdl-textfield__input', 'id' => 'type')) !!}
 									<label for="type">
 										<i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									</label>

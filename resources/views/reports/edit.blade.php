@@ -98,7 +98,7 @@ Editing report
 							  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="file_upload_container">
 									    <div id="file_upload_text_div" class="mdl-textfield mdl-js-textfield">
-											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" />
+											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" accept=".doc, .docx, .pdf"/>
 											<label class="mdl-textfield__label profile_pic_label" for="file_upload_text">Report file</label>
 									    </div>
 									    <div class="file_upload_btn">
@@ -113,7 +113,7 @@ Editing report
 
 								<div class="mdl-cell mdl-cell--12-col">
 								    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
-								        {!! Form::textarea('description',  $report->description, array('id' => 'description', 'class' => 'mdl-textfield__input')) !!}
+								        {!! Form::textarea('description',  $report->description, array('id' => 'description', 'class' => 'mdl-textfield__input', 'accept' => ".doc, .docx, .pdf"))) !!}
 								        {!! Form::label('description', 'Description', array('class' => 'mdl-textfield__label')); !!}
 								    </div>
 								</div>

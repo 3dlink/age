@@ -70,9 +70,17 @@
 
 <div class="mdl-grid full-grid margin-top-0 padding-0">
 	<div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+
+		<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
+			<h2 class="mdl-card__title-text">{{$user->name}}'s account</h2>
+		</div>
 	    <div class="mdl-card card-wide" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 			<div class="mdl-user-avatar">
+				@if($user->profile->profile_pic != NULL)
+				<img src="{{ url($user->profile->profile_pic) }}" alt="{{ $user->name }}">
+				@else
 				<img src="{{ Gravatar::get($user->email) }}" alt="{{ $user->name }}">
+				@endif
 				<span itemprop="image" style="display:none;">{{ Gravatar::get($user->email) }}</span>
 			</div>
 			<div class="mdl-card__title" @if ($user->profile->user_profile_bg != NULL) style="background: url('{{$user->profile->user_profile_bg}}') center/cover;" @endif>

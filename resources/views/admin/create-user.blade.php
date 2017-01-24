@@ -119,14 +119,14 @@ dialog + .backdrop {
 							  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="file_upload_container">
 									    <div id="file_upload_text_div" class="mdl-textfield mdl-js-textfield">
-											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" />
+											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text"/>
 											<label class="mdl-textfield__label profile_pic_label" for="file_upload_text">Profile picture</label>
 									    </div>
 									    <div class="file_upload_btn">
 									     	<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white">
 									        	<i class="material-icons">wallpaper</i>
 
-									       		{!! Form::file('user_profile_pic',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input')) !!}
+									       		{!! Form::file('user_profile_pic',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input', 'accept'=> "image/*" )) !!}
 									      	</label>
 									    </div>
 									</div>

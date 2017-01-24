@@ -62,21 +62,23 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">ID</th>
 					<th class="mdl-data-table__cell--non-numeric">Admin</th>
+					<th class="mdl-data-table__cell--non-numeric">Client</th>
 					<th class="mdl-data-table__cell--non-numeric">Date</th>
 					<th class="mdl-data-table__cell--non-numeric">Start hour</th>
 					<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
 					<th class="mdl-data-table__cell--non-numeric">Description</th>
 					<th class="mdl-data-table__cell--non-numeric">Type</th>
+					@if(!\Auth::user()->hasRole('usuario'))
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					@endif
 			    </tr>
 			  </thead>
 			  <tbody>
 			        @foreach ($tasks as $a_task)
 						<tr>
-							<td class="mdl-data-table__cell--non-numeric">{{$a_task->id}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_task->user->first_name.' '.$a_task->user->last_name}}</td>
+							<td class="mdl-data-table__cell--non-numeric">{{$a_task->client->first_name.' '.$a_task->client->last_name}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{date('d/m/Y', strtotime($a_task->fecha))}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{date('H:i', strtotime($a_task->hora_inicio))}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_task->cant_horas/60}}</td>
@@ -88,6 +90,7 @@ dialog + .backdrop {
 								Distancia
 							@endif
 							</td>
+							@if(!\Auth::user()->hasRole('usuario'))
 							<td class="mdl-data-table__cell--non-numeric">
 
 <!-- 								{{-- VIEW TASK PROFILE ICON BUTTON --}}
@@ -114,6 +117,7 @@ dialog + .backdrop {
 									</a>
 								{!! Form::close() !!}
 							</td>
+							@endif
 						</tr>
 			        @endforeach
 			  </tbody>
@@ -122,7 +126,7 @@ dialog + .backdrop {
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
 		<a href="{{ url('/task/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
-			<i class="material-icons">person_add</i>
+			<i class="material-icons">add</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
 			<label class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--icon" for="search_table">

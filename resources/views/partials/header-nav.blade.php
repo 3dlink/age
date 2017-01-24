@@ -4,7 +4,7 @@
 
 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right demo-list-icon mdl-list" for="header_nav">
   	<li class="mdl-menu__item mdl-list__item">
-  		<a href="/" title="{{ Lang::get('titles.home') }}">
+  		<a href="{{url('/')}}" title="{{ Lang::get('titles.home') }}">
 			<span class="mdl-list__item-primary-content">
 				<i class="material-icons mdl-list__item-icon">home</i>
 				{{ Lang::get('titles.home') }}

@@ -10,4 +10,9 @@ class Priority extends Model
     {
         return $this->belongsToMany('App\Models\Subject', 'subject_priority');
     }
+
+    public function requirements()
+    {
+    	return $this->belongsToMany('App\Models\Requirement');
+    }
 }

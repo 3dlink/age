@@ -75,13 +75,14 @@ Editing subject
 									<!-- <span class="mdl-textfield__error">Letters and numbers only</span> -->
 								</div>
 							</div>
-
-							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+							<div class="mdl-cell mdl-cell--1-col-desktop">
+							</div>
+							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--5-col-desktop">
 								<div class="mdl-js-textfield {{ $errors->has('priority') ? 'is-invalid' :'' }}">
 									{!! Form::label('priority', 'Available priorities', array('class' => '')); !!}
-
+									<div class="mdl-grid">
 									@foreach($priorities as $a_priority)
-									<div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop">	
+										<div class="mdl-cell mdl-cell--6-col-tablet mdl-cell--6-col-desktop">	
 										<?php $isAssigned = false; ?>
 										@foreach($subject->priorities as $priorityAssigned)
 										@if($priorityAssigned->id == $a_priority->id)
@@ -90,8 +91,9 @@ Editing subject
 										@endforeach
 										{!! Form::checkbox($a_priority->name, $a_priority->id, $isAssigned) !!}
 										{{ $a_priority->name }}
-									</div>
+										</div>
 									@endforeach
+									</div>
 									<span class="" style="color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility:@if(!empty($error)) visible @else hidden @endif;display: block;">Select at least one priority</span>
 								</div>
 							</div>

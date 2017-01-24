@@ -111,7 +111,15 @@ dialog + .backdrop {
 								</a>
 							</td>
 							<td class="mdl-data-table__cell--non-numeric">
-
+							@if($user->hasRole('usuario'))
+							@if($a_user->hasRole('analista') || $a_user->hasRole('supervisor'))
+								{{-- VIEW TASK ICON BUTTON --}}
+								<a href="{{ route('analyst.tasks', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View Analyst Tasks">
+									<i class="material-icons">list</i>
+								</a>
+							@endif
+							@endif
+							@if(!$user->hasRole('usuario'))
 
 								{{-- VIEW USER PROFILE ICON BUTTON --}}
 								<a href="{{ route('profile.show', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Profile">
@@ -136,6 +144,7 @@ dialog + .backdrop {
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}
+							@endif
 							</td>
 						</tr>
 			        @endforeach

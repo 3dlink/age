@@ -72,7 +72,7 @@ rd-time-list{
 
 							<div class="mdl-grid ">
 
-								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+								<div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('subject') ? 'is-invalid' :'' }}">
 										{!! Form::text('subject', NULL, array('id' => 'subject', 'class' => 'mdl-textfield__input')) !!}
 										{!! Form::label('subject', 'Subject', array('class' => 'mdl-textfield__label')); !!}
@@ -80,16 +80,20 @@ rd-time-list{
 									</div>
 								</div>
 
-								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+								<div class="mdl-cell mdl-cell--1-col-desktop">
+								</div>
+
+								<div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--5-col-desktop">
 									<div class="mdl-js-textfield {{ $errors->has('priority') ? 'is-invalid' :'' }}">
 									{!! Form::label('priority', 'Available priorities', array('class' => '')); !!}
-
+										<div class="mdl-grid">
 									@foreach($priorities as $a_priority)
-										<div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+											<div class="mdl-cell mdl-cell--3-col-tablet mdl-cell--6-col-desktop">
 											{!! Form::checkbox($a_priority->name, $a_priority->id, false) !!}
 											{{ $a_priority->name }}
-										</div>
+											</div>
 									@endforeach
+										</div>
 										<span class="" style="color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility:@if(!empty($error)) visible @else hidden @endif;display: block;">Select at least one priority</span>
 									</div>
 								</div>

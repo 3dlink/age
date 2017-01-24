@@ -97,11 +97,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     public function uploads(){
-        return $this->hasMany('App\Models\Report');
+        return $this->hasMany('App\Models\Report', 'uploaded_by');
     }
 
     public function reports(){
-        return $this->hasMany('App\Models\Report');
+        return $this->hasMany('App\Models\Report', 'belongs_to');
     }
 
     public function assignments(){
@@ -111,6 +111,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function requirements(){
         return $this->hasMany('App\Models\Requirement', 'created_by');
     }
+
+    public function clients()
+    {
+        return $this->belongsToMany('App\Models\User', 'analyst_client', 'analyst_id', 'client_id');
+    }
+
+    public function analysts()
+    {
+        return $this->belongsToMany('App\Models\User', 'analyst_client', 'client_id', 'analyst_id');
+    }
+
     // public function assignRole($role)
     // {
     //     return $this->roles()->attach($role);
