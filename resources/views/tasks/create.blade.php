@@ -71,17 +71,18 @@ rd-time-list{
 						<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
 
 							<div class="mdl-grid ">
-
+								@if(!\Auth::user()->hasRole('analista'))
 								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('admin') ? 'is-invalid' :'' }}">
 										{!! Form::select('admin', $analysts, NULL, array('class' => 'mdl-selectfield__select mdl-textfield__input', 'id' => 'admin')) !!}
 									    <label for="admin">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('admin', 'Assign admin', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select admin</span>
+										{!! Form::label('admin', 'Assign analyst', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error">Select analyst</span>
 									</div>
 								</div>
+								@endif
 
 								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('client') ? 'is-invalid' :'' }}">

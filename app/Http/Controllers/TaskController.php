@@ -147,7 +147,11 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $task = Task::find($id);
+
+        return view('tasks.view', [
+            'task'      => $task
+        ]);
     }
 
     /**
@@ -242,45 +246,133 @@ class TaskController extends Controller
         return $horas*60 + $minutos;
     }
 
-    public function getPDF($analyst, $client)
-    {
-        $user = \Auth::user();
-
-        if ($user->hasRole('supervisor') || $user->hasRole('super administrador')) {
-            $tasks = Task::all();
-            $total_tasks = $tasks->count();
-        } elseif ($user->hasRole('analista')) {
-            $tasks = $user->tasks;
-            $total_tasks = $tasks->count();
-        }
-
-        $pdf = PDF::loadView('tasks.pdf', [
-            'user'                    => $user,
-            'tasks'                   => $tasks,
-            'total_tasks'             => $total_tasks
-            ]
-            )->setPaper('a4', 'landscape');
-
-        return $pdf->download('test.pdf');
-    }
-
-    public function getAnalystTasks($username)
+    public function getPDF($username, $year, $week)
     {
         $user       = \Auth::user();
         $analyst    = User::where('name',$username)->get();
+        $analyst    = $analyst[0];
 
-        $tasks      = $analyst[0]->tasks;
+        $tasks      = Task::where([['client_id', $user->id], ['user_id', $analyst->id]])->get();
 
-        $total_tasks = $tasks->count();
+        $tasksArray = collect();
 
-        // $fecha = 
+        foreach ($tasks as $a_task) {
+            $date = $a_task->fecha;
+            if (date("W", strtotime($date)) == $week && date("Y", strtotime($date)) == $year) {
+                $tasksArray->push($a_task);
+            }
+        }
+
+        $normalTasks = collect();
+        $extraTasks = collect();
+
+        $normal_hours = 0;
+        $extra_hours = 0;
+
+        foreach ($tasksArray as $a_task) {
+            if ($normal_hours < 50) {
+                if ($normal_hours + ($a_task->cant_horas)/60 <= 50) {
+                    $normal_hours +=  ($a_task->cant_horas)/60;
+                } else {
+                    $normal_hours +=  ($a_task->cant_horas)/60;
+                    $diff = $normal_hours - 50;
+                    $normal_hours -= $diff;
+                    $extra_hours += $diff;
+
+                    $aux                    = new Task;
+                    $aux->fecha             = $a_task->fecha;
+                    $aux->hora_inicio       = $a_task->hora_inicio;
+                    $aux->cant_horas        = $diff*60;
+                    $aux->descripcion       = $a_task->descripcion;
+                    $aux->tipo              = $a_task->tipo;
+                    $aux->user_id           = $a_task->user_id;
+                    $aux->client_id         = $a_task->client_id;
+
+                    $extraTasks->push($aux);
+                    $a_task->cant_horas -= $diff*60;
+                }
+                $normalTasks->push($a_task);
+            } else {
+                $extraTasks->push($a_task);
+                $extra_hours += ($a_task->cant_horas)/60;
+            }
+        }
+
+        $pdf = PDF::loadView('tasks.pdf', [
+            'user'              => $analyst,
+            'tasksN'            => $normalTasks,
+            'tasksE'            => $extraTasks,
+            'cantN'             => $normal_hours,
+            'cantE'             => $extra_hours,
+            'total_hours'       => $normal_hours + $extra_hours
+            ]
+            )->setPaper('a4', 'landscape');
+
+        return $pdf->download($analyst->last_name.'_'.$analyst->first_name.'_horas_semana_'.$week.'_año_    '.$year.'.pdf');
+    }
+
+    public function getAnalystTasks($username, $year, $week)
+    {
+        $user       = \Auth::user();
+        $analyst    = User::where('name',$username)->get();
+        $analyst    = $analyst[0];
+
+        $tasks      = Task::where([['client_id', $user->id], ['user_id', $analyst->id]])->get();
+
+        $tasksArray = collect();
+
+        foreach ($tasks as $a_task) {
+            $date = $a_task->fecha;
+            if (date("W", strtotime($date)) == $week && date("Y", strtotime($date)) == $year) {
+                $tasksArray->push($a_task);
+            }
+        }
+
+        $normalTasks = collect();
+        $extraTasks = collect();
+
+        $normal_hours = 0;
+        $extra_hours = 0;
+
+        foreach ($tasksArray as $a_task) {
+            if ($normal_hours < 50) {
+                if ($normal_hours + ($a_task->cant_horas)/60 <= 50) {
+                    $normal_hours +=  ($a_task->cant_horas)/60;
+                } else {
+                    $normal_hours +=  ($a_task->cant_horas)/60;
+                    $diff = $normal_hours - 50;
+                    $normal_hours -= $diff;
+                    $extra_hours += $diff;
+
+                    $aux                    = new Task;
+                    $aux->fecha             = $a_task->fecha;
+                    $aux->hora_inicio       = $a_task->hora_inicio;
+                    $aux->cant_horas        = $diff*60;
+                    $aux->descripcion       = $a_task->descripcion;
+                    $aux->tipo              = $a_task->tipo;
+                    $aux->user_id           = $a_task->user_id;
+                    $aux->client_id         = $a_task->client_id;
+
+                    $extraTasks->push($aux);
+                    $a_task->cant_horas -= $diff*60;
+                }
+                $normalTasks->push($a_task);
+            } else {
+                $extraTasks->push($a_task);
+                $extra_hours += ($a_task->cant_horas)/60;
+            }
+        }
 
         return view('tasks.show-analyst-tasks', [
-            'user'                    => $analyst[0],
-            'tasks'                   => $tasks,
-            'total_tasks'             => $total_tasks
-            ]
-            );
+            'user'              => $analyst,
+            'tasksN'            => $normalTasks,
+            'tasksE'            => $extraTasks,
+            'cantN'             => $normal_hours,
+            'cantE'             => $extra_hours,
+            'total_hours'       => $normal_hours + $extra_hours,
+            'week'              => $week,
+            'year'              => $year
+        ]);
     }
 
     public function getAssignedAnalystsView()
@@ -292,10 +384,20 @@ class TaskController extends Controller
               'user'                    => $user,
               'users'                   => $analysts,
               'total_users'             => $analysts->count()
-              ]
-              );
+              ]);
         }
 
         return redirect('/');
+    }
+
+    public function showAnalyst($year, $week, $id)
+    {
+        $task = Task::find($id);
+
+        return view('tasks.view-analyst-task', [
+            'task'      => $task,
+            'year'      => $year,
+            'week'      => $week
+        ]);        
     }
 }

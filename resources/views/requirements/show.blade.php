@@ -62,10 +62,9 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">ID</th>
 					<th class="mdl-data-table__cell--non-numeric">Subject</th>
 					<th class="mdl-data-table__cell--non-numeric">Priority</th>
-					<th class="mdl-data-table__cell--non-numeric">Description</th>
+					<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
 					<th class="mdl-data-table__cell--non-numeric">Assigned Analyst</th>
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
 			    </tr>
@@ -73,10 +72,9 @@ dialog + .backdrop {
 			  <tbody>
 			        @foreach ($requirements as $a_req)
 						<tr>
-							<td class="mdl-data-table__cell--non-numeric">{{$a_req->id}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_req->subject->subject}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_req->priority->name}}</td>
-							<td class="mdl-data-table__cell--non-numeric">{{$a_req->description}}</td>
+							<!-- <td class="mdl-data-table__cell--non-numeric">{{$a_req->description}}</td> -->
 							<td class="mdl-data-table__cell--non-numeric">
 							@if(!empty($a_req->analyst))
 							{{$a_req->analyst->first_name.' '.$a_req->analyst->last_name}}</td>
@@ -86,32 +84,37 @@ dialog + .backdrop {
 							<td class="mdl-data-table__cell--non-numeric">
 								{{-- DOWNLOAD REQUIREMENT ARCHIVE ICON BUTTON --}}
 								@if(!empty($a_req->archive))
-								<a href="{{ url($a_req->archive) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<a href="{{ url($a_req->archive) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Download">
 									<i class="material-icons">get_app</i>
 								</a>
 								@endif
 
 								@if(\Auth::user()->hasRole('supervisor') || \Auth::user()->hasRole('super administrador'))
 									@if(!empty($a_req->analyst))
-									<a href="{{ URL::to('requirement/assign/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+									<a href="{{ URL::to('requirement/assign/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Assign analyst">
 										<i class="material-icons">perm_identity</i>
 									</a>
 									@else
-									<a href="{{ url('requirement/assign/create/'.$a_req->id) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+									<a href="{{ url('requirement/assign/create/'.$a_req->id) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Assign analyst">
 										<i class="material-icons">person_add</i>
 									</a>
 									@endif
 								@endif
 
+								{{-- SHOW REQUIREMENT ICON BUTTON --}}
+								<a href="{{ route('requirement.show', $a_req->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+									<i class="material-icons">visibility</i>
+								</a>
+
 								{{-- EDIT REQUIREMENT ICON BUTTON --}}
-								<a href="{{ URL::to('requirement/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<a href="{{ URL::to('requirement/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Edit requirement">
 									<i class="material-icons">edit</i>
 								</a>
 
 								{{-- DELETE ICON BUTTON AND FORM CALL --}}
 								{!! Form::open(array('url' => 'requirement/' . $a_req->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_req->id)) !!}
 									{!! Form::hidden('_method', 'DELETE') !!}
-									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_req->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_req->id}}">
+									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_req->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_req->id}}" title="Delete requirement">
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}

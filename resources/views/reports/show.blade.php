@@ -62,33 +62,36 @@ Showing All Reports
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">ID</th>
 						<th class="mdl-data-table__cell--non-numeric">Name</th>
-						<th class="mdl-data-table__cell--non-numeric">Description</th>
+						<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
 						<th class="mdl-data-table__cell--non-numeric">Uploaded by</th>
 						<th class="mdl-data-table__cell--non-numeric">Upload date</th>
-						<th class="mdl-data-table__cell--non-numeric">Belongs to</th>
+						<th class="mdl-data-table__cell--non-numeric">Client</th>
 						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					@foreach ($reports as $a_report)
 					<tr>
-						<td class="mdl-data-table__cell--non-numeric">{{$a_report->id}}</td>
 						<td class="mdl-data-table__cell--non-numeric">{{str_replace('_',' ', $a_report->name)}}</td>
-						<td class="mdl-data-table__cell--non-numeric">{{$a_report->description}}</td>
+						<!-- <td class="mdl-data-table__cell--non-numeric">{{$a_report->description}}</td> -->
 						<td class="mdl-data-table__cell--non-numeric">{{$a_report->owner->first_name.' '.$a_report->owner->last_name}}</td>
 						<td class="mdl-data-table__cell--non-numeric">{{date('d/m/Y', strtotime($a_report->created_at))}}</td>
 						<td class="mdl-data-table__cell--non-numeric">{{$a_report->client->first_name.' '.$a_report->client->last_name}}</td>
 						<td class="mdl-data-table__cell--non-numeric">
 
 
-						{{-- DOWNLOAD REPORT ICON BUTTON --}}
+							{{-- DOWNLOAD REPORT ICON BUTTON --}}
 							<a href="{{ url($a_report->storage) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
 								<i class="material-icons">get_app</i>
 							</a>
 
-						{{-- EDIT REPORT ICON BUTTON --}}
+							{{-- SHOW REPORT ICON BUTTON --}}
+							<a href="{{ route('report.show', $a_report->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+								<i class="material-icons">visibility</i>
+							</a>
+
+							{{-- EDIT REPORT ICON BUTTON --}}
 							<a href="{{ URL::to('report/' . $a_report->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
 								<i class="material-icons">edit</i>
 							</a>

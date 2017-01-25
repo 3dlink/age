@@ -105,7 +105,7 @@ Editing report
 									     	<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white">
 									        	<i class="material-icons">description</i>
 
-									       		{!! Form::file('upload',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input')) !!}
+									       		{!! Form::file('upload',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input', 'accept' => ".doc, .docx, .pdf")) !!}
 									      	</label>
 									    </div>
 									</div>
@@ -113,7 +113,7 @@ Editing report
 
 								<div class="mdl-cell mdl-cell--12-col">
 								    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
-								        {!! Form::textarea('description',  $report->description, array('id' => 'description', 'class' => 'mdl-textfield__input', 'accept' => ".doc, .docx, .pdf"))) !!}
+								        {!! Form::textarea('description',  $report->description, array('id' => 'description', 'class' => 'mdl-textfield__input')) !!}
 								        {!! Form::label('description', 'Description', array('class' => 'mdl-textfield__label')); !!}
 								    </div>
 								</div>

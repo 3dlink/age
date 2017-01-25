@@ -135,7 +135,11 @@ class RequirementController extends Controller
      */
     public function show($id)
     {
-        //
+        $requirement = Requirement::find($id);
+
+        return view('requirements.view', [
+            'requirement'       => $requirement
+        ]);
     }
 
     /**
@@ -252,7 +256,7 @@ class RequirementController extends Controller
 
     public function getRequirementFile($user, $id, $file)
     {
-        $file_url = storage_path() . '\users\id\\' . $user . '\uploads\requirements\\'. $id . '\\' . $file;
+        $file_url = storage_path() . '/users/id/' . $user . '/uploads/requirements/'. $id . '/' . $file;
         header('Content-Type: application/octet-stream');
         header("Content-Transfer-Encoding: Binary"); 
         header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\"");

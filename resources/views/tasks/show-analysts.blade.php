@@ -45,6 +45,10 @@ dialog + .backdrop {
 
 @section('content')
 
+<?php 
+	$date = date ('Y-m-d', strtotime('monday this week'));
+?>
+
 <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--12-col-desktop margin-top-0">
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
@@ -80,7 +84,7 @@ dialog + .backdrop {
 							@if($user->hasRole('usuario'))
 							@if($a_user->hasRole('analista') || $a_user->hasRole('supervisor'))
 								{{-- VIEW TASK ICON BUTTON --}}
-								<a href="{{ route('analyst.tasks', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View Analyst Tasks">
+								<a href="{{ url('/analyst/'.$a_user->name.'/'.date('Y', strtotime($date)).'/'.date('W', strtotime($date))) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View Analyst Tasks">
 									<i class="material-icons">list</i>
 								</a>
 							@endif

@@ -45,7 +45,7 @@
 
 	    	@include('partials.form-status')
 
-			<header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+			<header class="demo-header mdl-layout__header mdl-color--primary mdl-color-text--white">
 				<div class="mdl-layout__header-row">
 
 					<span class="mdl-layout-title">

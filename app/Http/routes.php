@@ -112,9 +112,19 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses'		=> 'TaskController@getAssignedAnalystsView'
 	]);
 
-	Route::get('analyst/{analyst}', [
+	Route::get('analyst/{analyst}/{year}/{week}', [
 		'as'		=> 'analyst.tasks',
 		'uses'		=> 'TaskController@getAnalystTasks'
+	]);
+
+	Route::get('analyst/pdf/{analyst}/{year}/{week}', [
+		'as'		=> 'analyst.pdf',
+		'uses'		=> 'TaskController@getPDF'
+	]);
+
+	Route::get('analyst/task/{year}/{week}/{task}', [
+		'as'		=> 'analyst.task',
+		'uses'		=> 'TaskController@showAnalyst'
 	]);
 });
 

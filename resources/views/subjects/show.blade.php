@@ -62,7 +62,6 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">ID</th>
 					<th class="mdl-data-table__cell--non-numeric">Subject</th>
 					<th class="mdl-data-table__cell--non-numeric">Available priorities</th>
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
@@ -71,7 +70,6 @@ dialog + .backdrop {
 			  <tbody>
 			        @foreach ($subjects as $a_subject)
 						<tr>
-							<td class="mdl-data-table__cell--non-numeric">{{$a_subject->id}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_subject->subject}}</td>
 							<td class="mdl-data-table__cell--non-numeric">
 							<?php $len = $a_subject->priorities->count(); $i = 1;

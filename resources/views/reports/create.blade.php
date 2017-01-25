@@ -104,7 +104,7 @@ dialog + .backdrop {
 									     	<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white">
 									        	<i class="material-icons">description</i>
 
-									       		{!! Form::file('upload',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input', 'accept' => ".doc, .docx, .pdf"))) !!}
+									       		{!! Form::file('upload',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input', 'accept' => ".doc, .docx, .pdf")) !!}
 									      	</label>
 									    </div>
 									</div>

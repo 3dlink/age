@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-01-2017 a las 19:04:04
+-- Tiempo de generación: 24-01-2017 a las 16:59:38
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -37,7 +37,9 @@ CREATE TABLE `analyst_client` (
 --
 
 INSERT INTO `analyst_client` (`id`, `analyst_id`, `client_id`) VALUES
-(9, 13, 11);
+(9, 13, 11),
+(10, 12, 15),
+(11, 13, 15);
 
 -- --------------------------------------------------------
 
@@ -167,6 +169,34 @@ INSERT INTO `reports` (`id`, `name`, `storage`, `extension`, `description`, `bel
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `requirements`
+--
+
+CREATE TABLE `requirements` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `priority_id` int(11) NOT NULL,
+  `archive` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `file_ext` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `assigned_to` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `requirements`
+--
+
+INSERT INTO `requirements` (`id`, `subject_id`, `priority_id`, `archive`, `file_ext`, `description`, `created_by`, `assigned_to`, `created_at`, `updated_at`) VALUES
+(4, 3, 1, '/files/users/10/requirements/4/requirementFile.pdf', 'pdf', 'a description', 10, NULL, '2017-01-24 02:20:51', '2017-01-24 03:04:40'),
+(5, 3, 2, '/files/users/10/requirements/5/requirementFile.pdf', 'pdf', 'asdada', 10, NULL, '2017-01-24 02:26:15', '2017-01-24 03:06:07'),
+(6, 2, 1, '', '', 'requerimiento de prueba', 15, 13, '2017-01-24 04:42:41', '2017-01-24 05:02:24');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -246,6 +276,7 @@ CREATE TABLE `tasks` (
   `descripcion` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tipo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -254,8 +285,9 @@ CREATE TABLE `tasks` (
 -- Volcado de datos para la tabla `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `fecha`, `hora_inicio`, `cant_horas`, `descripcion`, `tipo`, `user_id`, `created_at`, `updated_at`) VALUES
-(3, '2017-01-20', '11:00:00', 120, 'clases', '1', 13, '2017-01-19 17:14:55', '2017-01-19 17:14:55');
+INSERT INTO `tasks` (`id`, `fecha`, `hora_inicio`, `cant_horas`, `descripcion`, `tipo`, `user_id`, `client_id`, `created_at`, `updated_at`) VALUES
+(3, '2017-01-20', '11:00:00', 120, 'clases', '1', 13, 15, '2017-01-19 17:14:55', '2017-01-19 17:14:55'),
+(4, '2017-01-24', '07:00:00', 180, 'arreglos a las tareas', '2', 13, 11, '2017-01-24 17:41:38', '2017-01-24 17:43:46');
 
 -- --------------------------------------------------------
 
@@ -292,7 +324,7 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password
 (11, 'Danic', 'Daniel', 'admin', 'admin@admin.com', '$2y$10$kVleqKq/b0eY9jjFvIdPRePsYrzuJ/z3ZjqcEsnnP3vemvaY0oKIG', 'SKXiCQP4Bo9Nr3HScj4m2LpOtglWWwinnO2znJgILAoSMuoNAQY4CpZLYha7admin@admin.com', 1, 0, 4, NULL, '', '', '', '::1', '2017-01-18 03:17:44', '2017-01-18 03:17:44'),
 (12, 'daniadmi', 'admin', 'Corcega', 'author@author.com', '$2y$10$v7KinkTzq/sq7zpv6iFU3e4dGyYuGUev9ImjpnaGKky2FSOn2VjuK', 'b03HtBUU7CISkcdPnqkyHY0wjqC5gufMGAxgN5jY8phTNTetWFPzmpTpoPqyauthor@author.com', 1, 0, 2, NULL, '', '', '', '::1', '2017-01-18 03:23:45', '2017-01-18 03:23:45'),
 (13, 'español', 'Dani', 'analyst', 'author2@author.com', '$2y$10$CRjWM43qpkjh6F9IEEs4UOJbwDFjNcGpAxoJzJTqijV6W3hAKvqHG', 'xt36RXjttKx1GbB1FTnOZtzPBFCkFTnnBV2mysfOoiwHkmCJGugKcUPmdApkauthor2@author.com', 1, 0, 3, 'N2XcTAWv1VsIZBt2hfZCYfR6Ys10DEOgZgDgRa2K9MfSkgJJGtiVO0U27QhL', '', '', '', '::1', '2017-01-19 17:13:49', '2017-01-19 18:22:29'),
-(15, 'tests', 'test', 'test', 'test@test.com', '$2y$10$PputvrdIBfcerXpJu8I8SecK0rGsrpnkkJhhlEA/MXkQqJZVFS.iu', 'VeVAtQmCXBUTkCXEeUo6xZL154zqhhuE2yATodV5ATDhzqMhPnTwGnW3dm2Utest@test.com', 1, 0, 4, 'h33KMkSKpNU7cVPZN70dXeLddpAJibZBWDWnPAsgMOWyZkIi6qBBaaO3V14Z', '', '', '', '::1', '2017-01-19 19:12:33', '2017-01-19 20:45:14');
+(15, 'tests', 'test', 'test', 'test@test.com', '$2y$10$PputvrdIBfcerXpJu8I8SecK0rGsrpnkkJhhlEA/MXkQqJZVFS.iu', 'VeVAtQmCXBUTkCXEeUo6xZL154zqhhuE2yATodV5ATDhzqMhPnTwGnW3dm2Utest@test.com', 1, 0, 4, 'n1Xt4Va14oaMiHmWvu4ECmOqqZtmyxjC8OxoY28ZrvtEKuRJ540ufhNcc6r9', '', '', '', '::1', '2017-01-19 19:12:33', '2017-01-24 17:48:58');
 
 --
 -- Índices para tablas volcadas
@@ -329,6 +361,12 @@ ALTER TABLE `profiles`
 -- Indices de la tabla `reports`
 --
 ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `requirements`
+--
+ALTER TABLE `requirements`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -371,7 +409,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `analyst_client`
 --
 ALTER TABLE `analyst_client`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `password_resets`
 --
@@ -393,6 +431,11 @@ ALTER TABLE `profiles`
 ALTER TABLE `reports`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT de la tabla `requirements`
+--
+ALTER TABLE `requirements`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -411,7 +454,7 @@ ALTER TABLE `subject_priority`
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

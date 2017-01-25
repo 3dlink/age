@@ -62,7 +62,6 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">ID</th>
 					<th class="mdl-data-table__cell--non-numeric">Name</th>
 					<th class="mdl-data-table__cell--non-numeric">Email</th>
 					<th class="mdl-data-table__cell--non-numeric">Access Level</th>
@@ -72,7 +71,6 @@ dialog + .backdrop {
 			  <tbody>
 			        @foreach ($users as $a_user)
 						<tr>
-							<td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $a_user->id) }}">{{$a_user->id}}</a></td>
 							<td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $a_user->id) }}">{{$a_user->name}} </a></td>
 							<td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $a_user->id) }}">{{$a_user->email}} </a></td>
 							<td class="mdl-data-table__cell--non-numeric">

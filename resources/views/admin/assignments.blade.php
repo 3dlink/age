@@ -61,7 +61,6 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">ID</th>
 					<th class="mdl-data-table__cell--non-numeric">Client</th>
 					<th class="mdl-data-table__cell--non-numeric">Assigned analysts</th>
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
@@ -70,7 +69,6 @@ dialog + .backdrop {
 			  <tbody>
 			        @foreach ($clients as $a_client)
 						<tr>
-							<td class="mdl-data-table__cell--non-numeric">{{$a_client->id}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_client->first_name.' '.$a_client->last_name}}</td>
 							<td class="mdl-data-table__cell--non-numeric">
 							@if(!empty($a_client->analysts))
