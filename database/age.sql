@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2017 a las 16:59:38
+-- Tiempo de generación: 25-01-2017 a las 20:38:10
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -286,8 +286,10 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `fecha`, `hora_inicio`, `cant_horas`, `descripcion`, `tipo`, `user_id`, `client_id`, `created_at`, `updated_at`) VALUES
-(3, '2017-01-20', '11:00:00', 120, 'clases', '1', 13, 15, '2017-01-19 17:14:55', '2017-01-19 17:14:55'),
-(4, '2017-01-24', '07:00:00', 180, 'arreglos a las tareas', '2', 13, 11, '2017-01-24 17:41:38', '2017-01-24 17:43:46');
+(3, '2017-01-24', '11:00:00', 1410, 'clases', '1', 13, 15, '2017-01-19 17:14:55', '2017-01-25 20:07:37'),
+(4, '2017-01-24', '07:00:00', 1410, 'arreglos a las tareas', '2', 13, 15, '2017-01-24 17:41:38', '2017-01-25 20:06:42'),
+(5, '2017-01-27', '00:30:00', 420, 'asdsad', '1', 13, 15, '2017-01-25 20:07:01', '2017-01-25 21:01:01'),
+(6, '2017-01-26', '01:00:00', 180, 'sdsad', '2', 13, 15, '2017-01-25 20:08:38', '2017-01-25 20:08:38');
 
 -- --------------------------------------------------------
 
@@ -454,7 +456,7 @@ ALTER TABLE `subject_priority`
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

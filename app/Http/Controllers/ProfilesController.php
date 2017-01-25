@@ -147,7 +147,7 @@ class ProfilesController extends Controller {
         $profile->phone = $request->input('phone');
         $profile->skype_user = $request->input('skype_user');
 
-        $pic = NULL;
+        $pic = $profile->profile_pic;
             // CHECK FOR USER PROFILE IMAGE FILE UPLOAD
         if(Input::file('user_profile_pic') != NULL){
 
@@ -168,7 +168,7 @@ class ProfilesController extends Controller {
         $profile->profile_pic = $pic;
         $user->profile()->save($profile);
         
-        return redirect('profile/'.$user->name.'/edit')->with('status', 'Profile updated!');
+        return redirect('profile/'.$user->name)->with('status', 'Profile updated!');
     }
 
     // FUNCTON TO RETURN USER PROFILE BACKGROUND IMAGE
