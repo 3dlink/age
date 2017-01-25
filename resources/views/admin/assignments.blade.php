@@ -62,14 +62,22 @@ dialog + .backdrop {
 			  <thead>
 			    <tr>
 					<th class="mdl-data-table__cell--non-numeric">Client</th>
+					<th class="mdl-data-table__cell--non-numeric">Email</th>
+					<th class="mdl-data-table__cell--non-numeric">Phone</th>
+					<th class="mdl-data-table__cell--non-numeric">Skype</th>
 					<th class="mdl-data-table__cell--non-numeric">Assigned analysts</th>
+					@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					@endif
 			    </tr>
 			  </thead>
 			  <tbody>
 			        @foreach ($clients as $a_client)
 						<tr>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_client->first_name.' '.$a_client->last_name}}</td>
+							<td class="mdl-data-table__cell--non-numeric">{{$a_client->email}}</td>
+							<td class="mdl-data-table__cell--non-numeric">{{$a_client->profile->phone}}</td>
+							<td class="mdl-data-table__cell--non-numeric">{{$a_client->profile->skype_user}}</td>
 							<td class="mdl-data-table__cell--non-numeric">
 							@if(!empty($a_client->analysts))
 							<?php $len = $a_client->analysts->count(); $i = 1;
@@ -84,6 +92,7 @@ dialog + .backdrop {
 							?>
 							@endif
 							</td>
+							@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
 							<td class="mdl-data-table__cell--non-numeric">
 
 								{{-- EDIT CLIENT ASSIGNMENT ICON BUTTON --}}
@@ -99,6 +108,7 @@ dialog + .backdrop {
 									</a>
 								{!! Form::close() !!}
 							</td>
+							@endif
 						</tr>
 			        @endforeach
 			  </tbody>
@@ -106,9 +116,11 @@ dialog + .backdrop {
 		</div>
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
+    	@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
 		<a href="{{ route('analyst.assign') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
 			<i class="material-icons">person_add</i>
 		</a>
+		@endif
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
 			<label class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--icon" for="search_table">
 			  	<i class="material-icons">search</i>

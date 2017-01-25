@@ -54,7 +54,7 @@
 	@endphp
 @elseif ($user->hasRole('supervisor'))
 	@php
-        $access_level   = 'Analyst';
+        $access_level   = 'Supervisor';
         $access_class 	= 'mdl-color--green-400 mdl-color-text--white';
         $access_icon	= 'lock_outline';
 	@endphp

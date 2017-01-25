@@ -89,7 +89,7 @@ dialog + .backdrop {
 									    <label for="client">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('client', 'Client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										{!! Form::label('client', 'Select Client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
 										<span class="mdl-textfield__error">Select client</span>
 									</div>
 								</div>

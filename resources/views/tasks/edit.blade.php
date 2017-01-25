@@ -98,7 +98,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 									<label for="admin">
 										<i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									</label>
-									{!! Form::label('admin', 'Assign analyst', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+									{!! Form::label('admin', 'Select analyst', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
 									<span class="mdl-textfield__error">Select analyst</span>
 								</div>
 							</div>
@@ -110,7 +110,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 									    <label for="client">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('client', 'Assign client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										{!! Form::label('client', 'Select client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
 										<span class="mdl-textfield__error">Select client</span>
 									</div>
 								</div>

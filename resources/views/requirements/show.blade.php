@@ -105,12 +105,12 @@ dialog + .backdrop {
 								<a href="{{ route('requirement.show', $a_req->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
 									<i class="material-icons">visibility</i>
 								</a>
-
+								@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
 								{{-- EDIT REQUIREMENT ICON BUTTON --}}
 								<a href="{{ URL::to('requirement/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Edit requirement">
 									<i class="material-icons">edit</i>
 								</a>
-
+								@if(\Auth::user()->hasRole('super administrador'))
 								{{-- DELETE ICON BUTTON AND FORM CALL --}}
 								{!! Form::open(array('url' => 'requirement/' . $a_req->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_req->id)) !!}
 									{!! Form::hidden('_method', 'DELETE') !!}
@@ -118,6 +118,8 @@ dialog + .backdrop {
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}
+								@endif
+								@endif
 							</td>
 						</tr>
 			        @endforeach
@@ -126,9 +128,11 @@ dialog + .backdrop {
 		</div>
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
+    	@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('usuario'))
 		<a href="{{ url('/requirement/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
 			<i class="material-icons">add</i>
 		</a>
+		@endif
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
 			<label class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--icon" for="search_table">
 			  	<i class="material-icons">search</i>

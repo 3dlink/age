@@ -128,7 +128,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 		</div>
 	</div>
 	<div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('analyst/pdf/'.$user->name.'/'.$year.'/'.$week) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;">
+		<a href="{{ url('analyst/pdf/'.$user->name.'/'.$year.'/'.$week) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;" title="Descargar Servicio Nominal">
 			<i class="material-icons">get_app</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
@@ -168,8 +168,9 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 						<th class="mdl-data-table__cell--non-numeric">Date</th>
 						<th class="mdl-data-table__cell--non-numeric">Start hour</th>
 						<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
-						<th class="mdl-data-table__cell--non-numeric">Description</th>
+						<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
 						<th class="mdl-data-table__cell--non-numeric">Type</th>
+						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -180,13 +181,19 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 						<td class="mdl-data-table__cell--non-numeric">{{date('d/m/Y', strtotime($a_task->fecha))}}</td>
 						<td class="mdl-data-table__cell--non-numeric">{{date('H:i', strtotime($a_task->hora_inicio))}}</td>
 						<td class="mdl-data-table__cell--non-numeric">{{$a_task->cant_horas/60}}</td>
-						<td class="mdl-data-table__cell--non-numeric">{{$a_task->descripcion}}</td>
+						<!-- <td class="mdl-data-table__cell--non-numeric">{{$a_task->descripcion}}</td> -->
 						<td class="mdl-data-table__cell--non-numeric">
 							@if($a_task->tipo == 1)
 							Presencial
 							@elseif($a_task->tipo == 2)
 							Distancia
 							@endif
+						</td>
+						<td class="mdl-data-table__cell--non-numeric">
+							{{-- SHOW TASK ICON BUTTON --}}
+							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+								<i class="material-icons">visibility</i>
+							</a>
 						</td>
 					</tr>
 					@endforeach
@@ -195,7 +202,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 		</div>
 	</div>
 	<div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('analyst/pdf/'.$user->name.'/'.$year.'/'.$week) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;">
+		<a href="{{ url('analyst/pdf/'.$user->name.'/'.$year.'/'.$week) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;" title="Descargar Servicio Nominal">
 			<i class="material-icons">get_app</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">

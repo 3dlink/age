@@ -82,7 +82,7 @@ Editing Requirement Ticket
 									    <label for="subject">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('subject', 'Assign subject', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										{!! Form::label('subject', 'Select subject', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
 										<span class="mdl-textfield__error">Select subject</span>
 									</div>
 								</div>
@@ -93,7 +93,7 @@ Editing Requirement Ticket
 									    <label for="priority">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('priority', 'Assign priority', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										{!! Form::label('priority', 'Select priority', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
 										<span class="mdl-textfield__error">Select priority</span>
 									</div>
 								</div>
