@@ -61,6 +61,13 @@ class ReportController extends Controller
             'upload'            => 'required|mimes:doc,docx,pdf',
             'description'       => 'required',
             'client'            => 'required|exists:users,id'
+        ], [
+            'name.required'         => 'Ingrese un nombre para el Reporte',
+            'upload.required'       => 'Debe seleccionar un archivo',
+            'upload.mimes'          => 'El archivo seleccionado no es válido',
+            'description.required'  => 'Debe escribir una descripción para el Reporte',
+            'client.required'       => 'Debe seleccionar un cliente',
+            'client.exists'         => 'El cliente seleccionado no existe'
         ]);
     }
 
@@ -70,6 +77,12 @@ class ReportController extends Controller
             'upload'            => 'mimes:doc,docx,pdf',
             'description'       => 'required',
             'client'            => 'required|exists:users,id'
+        ], [
+            'name.required'         => 'Ingrese un nombre para el Reporte',
+            'upload.mimes'          => 'El archivo seleccionado no es válido',
+            'description.required'  => 'Debe escribir una descripción para el Reporte',
+            'client.required'       => 'Debe seleccionar un cliente',
+            'client.exists'         => 'El cliente seleccionado no existe'
         ]);
     }
 
@@ -140,7 +153,7 @@ class ReportController extends Controller
 
             $report->save();
 
-            return redirect('report')->with('status', 'Successfully uploaded report!');
+            return redirect('report')->with('status', 'Reporte subido éxitosamente!');
         }
     }
 
@@ -248,7 +261,7 @@ class ReportController extends Controller
 
             $report->save();
 
-            return redirect('report')->with('status', 'Successfully uploaded report!');
+            return redirect('report')->with('status', 'Reporte modificado éxitosamente!');
         }
     }
 
@@ -268,7 +281,7 @@ class ReportController extends Controller
 
         $report->delete();
 
-        return redirect('report')->with('status', 'Successfully deleted the report!');
+        return redirect('report')->with('status', 'Reporte eliminado éxitosamente!');
     }
 
     public function getReport($id, $report)

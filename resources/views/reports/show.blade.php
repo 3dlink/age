@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Reports
+Reportes
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ background: rgba(0,0,0,0.8);
 @endsection
 
 @section('header')
-Showing All Reports
+Mostrando Todos los Reportes
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ Showing All Reports
 <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ route('report.index') }}" disabled>
 		<span itemprop="name">
-			Reports List
+			Reportes
 		</span>
 	</a>
 	<meta itemprop="position" content="2" />
@@ -49,11 +49,11 @@ Showing All Reports
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_reports === 1)
-			{{ $total_reports }} report total
+			{{ $total_reports }} Reporte en total
 			@elseif ($total_reports > 1)
-			{{ $total_reports }} Total Reports
+			{{ $total_reports }} Reportes en Total
 			@else
-			No Reports :(
+			Sin Reportes :(
 			@endif
 		</h2>
 	</div>
@@ -62,12 +62,12 @@ Showing All Reports
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Name</th>
+						<th class="mdl-data-table__cell--non-numeric">Nombre</th>
 						<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
-						<th class="mdl-data-table__cell--non-numeric">Uploaded by</th>
-						<th class="mdl-data-table__cell--non-numeric">Upload date</th>
-						<th class="mdl-data-table__cell--non-numeric">Client</th>
-						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+						<th class="mdl-data-table__cell--non-numeric">Subido por</th>
+						<th class="mdl-data-table__cell--non-numeric">Fecha de creación</th>
+						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -82,26 +82,26 @@ Showing All Reports
 
 
 							{{-- DOWNLOAD REPORT ICON BUTTON --}}
-							<a href="{{ url($a_report->storage) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+							<a href="{{ url($a_report->storage) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Descargar Reporte">
 								<i class="material-icons">get_app</i>
 							</a>
 
 							{{-- SHOW REPORT ICON BUTTON --}}
-							<a href="{{ route('report.show', $a_report->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+							<a href="{{ route('report.show', $a_report->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 								<i class="material-icons">visibility</i>
 							</a>
 
 							@if(!\Auth::user()->hasRole('usuario'))
 
 							{{-- EDIT REPORT ICON BUTTON --}}
-							<a href="{{ URL::to('report/' . $a_report->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+							<a href="{{ URL::to('report/' . $a_report->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Editar Reporte">
 								<i class="material-icons">edit</i>
 							</a>
 
 							{{-- DELETE ICON BUTTON AND FORM CALL --}}
 							{!! Form::open(array('url' => 'report/' . $a_report->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_report->id)) !!}
 							{!! Form::hidden('_method', 'DELETE') !!}
-							<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_report->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_report->id}}">
+							<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_report->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_report->id}}" title="Eliminar Reporte">
 								<i class="material-icons">delete_forever</i>
 							</a>
 							{!! Form::close() !!}
@@ -115,7 +115,7 @@ Showing All Reports
 	</div>
 	<div class="mdl-card__menu" style="top: -5px;">
 		@if(!\Auth::user()->hasRole('usuario'))
-		<a href="{{ url('/report/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+		<a href="{{ url('/report/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Subir Reporte">
 			<i class="material-icons">add</i>
 		</a>
 		@endif
@@ -124,9 +124,9 @@ Showing All Reports
 				<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 				<label class="mdl-textfield__label" for="search_table">
-					Search Terms
+					Buscar
 				</label>
 			</div>
 		</div>

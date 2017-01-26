@@ -52,7 +52,11 @@ class ProfilesController extends Controller {
             'phone'                 => '',
             'skype_user'            => '',
             'user_profile_pic'      => 'image'
-            ]);
+        ],[
+            'first_name.required'       => 'Ingrese un nombre',
+            'last_name.required'        => 'Ingrese un apellido',
+            'user_profile_pic.image'    => 'El archivo debe ser una imagen'
+        ]);
     }
 
     /**
@@ -168,7 +172,7 @@ class ProfilesController extends Controller {
         $profile->profile_pic = $pic;
         $user->profile()->save($profile);
         
-        return redirect('profile/'.$user->name)->with('status', 'Profile updated!');
+        return redirect('profile/'.$user->name)->with('status', 'Perfil actualizado!');
     }
 
     // FUNCTON TO RETURN USER PROFILE BACKGROUND IMAGE

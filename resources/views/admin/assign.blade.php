@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Assign Client
+	Asignar Analistas
 @endsection
 
 @section('template_fastload_css')
@@ -22,7 +22,7 @@ rd-time-list{
 @endsection
 
 @section('header')
-	Assign Client
+	Asignar Analistas
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@ rd-time-list{
 	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ url('/assignments') }}">
 			<span itemprop="name">
-				Assignments List
+				Asignación de Analistas
 			</span>
 		</a>
 		<i class="material-icons">chevron_right</i>
@@ -49,7 +49,7 @@ rd-time-list{
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ route('analyst.assign') }}">
 			<span itemprop="name">
-				Assign Client
+				Asignar Analistas
 			</span>
 		</a>
 		<meta itemprop="position" content="3" />
@@ -61,7 +61,7 @@ rd-time-list{
 	    <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
 			<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-				<h2 class="mdl-card__title-text">Assign Client</h2>
+				<h2 class="mdl-card__title-text">Asignar Analistas</h2>
 			</div>
 
 			{!! Form::open(array('action' => 'UsersManagementController@assignAnalysts', 'method' => 'POST', 'role' => 'form')) !!}
@@ -72,20 +72,22 @@ rd-time-list{
 
 							<div class="mdl-grid ">
 
-								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--5-col-desktop">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth {{ $errors->has('client') ? 'is-invalid' :'' }}">
 										{!! Form::select('client', $clients, NULL, array('class' => 'mdl-selectfield__select mdl-textfield__input', 'id' => 'client')) !!}
 									    <label for="client">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('client', 'Client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										{!! Form::label('client', 'Cliente', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
 										<span class="mdl-textfield__error">Select client</span>
 									</div>
+								</div>
+								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--1-col-desktop">
 								</div>
 
 								<div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--5-col-desktop">
 									<div class="mdl-js-textfield {{ $errors->has('priority') ? 'is-invalid' :'' }}">
-									{!! Form::label('priority', 'Available analysts', array('class' => '')); !!}
+									{!! Form::label('priority', 'Analistas Disponibles', array('class' => '')); !!}
 										<div class="mdl-grid">
 									@foreach($analysts as $a_analyst)
 											<div class="mdl-cell mdl-cell--3-col-tablet mdl-cell--6-col-desktop">
@@ -94,7 +96,7 @@ rd-time-list{
 											</div>
 									@endforeach
 										</div>
-										<span class="" style="color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility:@if(!empty($error)) visible @else hidden @endif;display: block;">Select at least one analyst</span>
+										<span class="" style="color: #d50000; position: absolute; font-size: 12px; margin-top: 3px; visibility:@if(!empty($error)) visible @else hidden @endif;display: block;">Seleccione al menos un analista</span>
 									</div>
 								</div>
 							</div>
@@ -109,7 +111,7 @@ rd-time-list{
 
 							{{-- SAVE BUTTON--}}
 							<span class="save-actions">
-								{!! Form::button('<i class="material-icons">save</i> Save Assignment', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+								{!! Form::button('<i class="material-icons">save</i> Guardar Asignación', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
 							</span>
 
 						</div>
@@ -120,7 +122,7 @@ rd-time-list{
 
 					{{-- SAVE ICON --}}
 					<span class="save-actions">
-						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save Assignment')) !!}
+						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Guardar Asignación')) !!}
 					</span>
 			    </div>
 

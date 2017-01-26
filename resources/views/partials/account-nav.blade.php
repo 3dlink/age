@@ -1,6 +1,6 @@
 <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
 	<i class="material-icons" role="presentation">arrow_drop_down</i>
-	<span class="visuallyhidden">Accounts</span>
+	<span class="visuallyhidden">Cuentas</span>
 </button>
 
 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right demo-list-icon mdl-list" for="accbtn">

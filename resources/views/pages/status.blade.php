@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Errors
+	Error
 @endsection
 
 @section('content')

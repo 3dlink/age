@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Subjects
+Asuntos
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ dialog + .backdrop {
 @endsection
 
 @section('header')
-	Showing All Subjects
+	Mostrando Todos los Asuntos
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ dialog + .backdrop {
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ route('subject.index') }}" disabled>
 			<span itemprop="name">
-				Subjects List
+				Asuntos
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />
@@ -49,11 +49,11 @@ dialog + .backdrop {
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_subjects === 1)
-			    {{ $total_subjects }} Subject total
+			    {{ $total_subjects }} Asunto en total
 			@elseif ($total_subjects > 1)
-			    {{ $total_subjects }} Total Subjects
+			    {{ $total_subjects }} Asuntos en total
 			@else
-			    No Subjects :(
+			    Sin Asuntos :(
 			@endif
 		</h2>
 	</div>
@@ -62,9 +62,9 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">Subject</th>
-					<th class="mdl-data-table__cell--non-numeric">Available priorities</th>
-					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					<th class="mdl-data-table__cell--non-numeric">Asunto</th>
+					<th class="mdl-data-table__cell--non-numeric">Prioridades disponibles</th>
+					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -86,14 +86,14 @@ dialog + .backdrop {
 							<td class="mdl-data-table__cell--non-numeric">
 
 								{{-- EDIT SUBJECT ICON BUTTON --}}
-								<a href="{{ URL::to('subject/' . $a_subject->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<a href="{{ URL::to('subject/' . $a_subject->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Editar Asunto">
 									<i class="material-icons">edit</i>
 								</a>
 
 								{{-- DELETE ICON BUTTON AND FORM CALL --}}
 								{!! Form::open(array('url' => 'subject/' . $a_subject->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_subject->id)) !!}
 									{!! Form::hidden('_method', 'DELETE') !!}
-									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_subject->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_subject->id}}">
+									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_subject->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_subject->id}}" title="Eliminar Asunto">
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}
@@ -105,7 +105,7 @@ dialog + .backdrop {
 		</div>
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('/subject/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+		<a href="{{ url('/subject/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Crear Asunto">
 			<i class="material-icons">add</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
@@ -113,9 +113,9 @@ dialog + .backdrop {
 			  	<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 			  	<label class="mdl-textfield__label" for="search_table">
-			  		Search Terms
+			  		Buscar
 			  	</label>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 @extends('auth')
 
 @section('template_title')
-	Login
+	Ingresar
 @endsection
 
 @section('template_fastload_css')
@@ -28,13 +28,13 @@
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('email') ? 'is-invalid' :'' }}">
                             {!! Form::email('email', null, array('id' => 'email', 'class' => 'mdl-textfield__input', )) !!}
                             {!! Form::label('email', Lang::get('auth.email') , array('class' => 'mdl-textfield__label')); !!}
-                            <span class="mdl-textfield__error">Please Enter a Valid {{ Lang::get('auth.email') }}</span>
+                            <span class="mdl-textfield__error"></span>
                         </div>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('password') ? 'is-invalid' :'' }}">
                             {!! Form::password('password', array('id' => 'userpass', 'class' => 'mdl-textfield__input')) !!}
                             {!! Form::label('password', Lang::get('auth.password') , array('class' => 'mdl-textfield__label')); !!}
-                             <span class="mdl-textfield__error">Please Enter Your Password</span>
+                             <span class="mdl-textfield__error"></span>
                         </div>
 
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="remember">

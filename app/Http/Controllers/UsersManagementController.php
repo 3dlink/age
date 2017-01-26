@@ -83,13 +83,18 @@ class UsersManagementController extends Controller {
     public function validator(array $data)
     {
         return Validator::make($data, [
-            'name'          	=> 'required|max:255',
-            'email'         	=> 'required|email|max:255',
-            'bio'               => '',
-            'phone'             => '',
-            'skype_user'        => '',
-            'user_profile_pic'  => 'image'
-            ]);
+            'name'          	        => 'required|max:255',
+            'email'         	        => 'required|email|max:255',
+            'bio'                       => '',
+            'phone'                     => '',
+            'skype_user'                => '',
+            'user_profile_pic'          => 'image'
+        ], [
+            'name.required'             => 'Ingrese un nombre de usuario',
+            'email.required'            => 'Ingrese un correo electrónico',
+            'email.email'               => 'Debe ingresar un correo válido',
+            'user_profile_pic.image'    => 'El archivo debe ser una imagen'
+        ]);
     }
 
     /**
@@ -106,13 +111,27 @@ class UsersManagementController extends Controller {
             'first_name'            => 'required|max:255',
             'last_name'             => 'required|max:255',
             'password'              => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6|same:password',
+            'password_confirmation' => 'required|same:password',
             'user_level'            => 'required',
             'bio'                   => '',
             'phone'                 => '',
             'skype_user'            => '',
             'user_profile_pic'      => 'image'
-            ]);
+        ], [
+            'name.required'                     => 'Ingrese un nombre de usuario',
+            'name.max'                          => 'La longitud del nombre de usuario no puede ser mayor a 255 carácteres',
+            'name.unique'                       => 'El nombre de usuario ya existe',
+            'first_name.required'               => 'Ingrese un nombre',
+            'last_name.required'                => 'Ingrese un apellido',
+            'email.required'                    => 'Ingrese un correo electrónico',
+            'password.required'                 => 'Ingrese una contraseña',
+            'password.min'                      => 'Su contraseña debe tener al menos 6 carácteres',
+            'password_confirmation.required'    => 'Confirme su contraseña',
+            'password.same'                     => 'Sus contraseñas deben coincidir',
+            'password_confirmation.same'        => 'Sus contraseñas deben coincidir',
+            'user_profile_pic.image'            => 'El archivo debe ser una imagen',
+            'user_level.required'               => 'Debe seleccionar un nivel de acceso',
+        ]);
     }
 
     /**
@@ -150,7 +169,7 @@ class UsersManagementController extends Controller {
             'user'                      => $user,
             'access'                    => $access,
             ]
-            )->with('status', 'Successfully updated user!');
+            )->with('status', 'Usuario actualizado éxitosamente!');
 
     }
 
@@ -187,7 +206,7 @@ class UsersManagementController extends Controller {
             // SAVE USER CORE SETTINGS
             $user->save();
 
-            return redirect('users/' . $user->id . '/')->with('status', 'Successfully updated the user!');
+            return redirect('users/' . $user->id . '/')->with('status', 'Usuario actualizado éxitosamente!');
 
         }
     }
@@ -272,7 +291,7 @@ class UsersManagementController extends Controller {
             $user->profile()->save($profile);
 
             // THE SUCCESSFUL RETURN
-            return redirect('users')->with('status', 'Successfully created user!');
+            return redirect('users')->with('status', 'Usuario creado éxitosamente!');
         }
 
     }
@@ -303,7 +322,7 @@ class UsersManagementController extends Controller {
         $user = User::find($id);
         $user->delete();
 
-        return redirect('users')->with('status', 'Successfully deleted the user!');
+        return redirect('users')->with('status', 'Usuario eliminado éxitosamente!');
     }
 
     /**
@@ -405,7 +424,7 @@ class UsersManagementController extends Controller {
             $client->analysts()->attach($analysts);
         }
 
-        return redirect('assignments')->with('status', 'Successfully assigned analysts!');
+        return redirect('assignments')->with('status', 'Analistas asignados éxitosamente!');
     }
 
     public function unassignAnalysts($id)
@@ -413,7 +432,7 @@ class UsersManagementController extends Controller {
         $client = User::find($id);
         $client->analysts()->detach();
 
-        return redirect('assignments')->with('status', 'Successfully deleted analysts assignment!');
+        return redirect('assignments')->with('status', 'Asignación eliminada!');
     }
 
     public function getEditAnalystsView($id)
@@ -444,6 +463,6 @@ class UsersManagementController extends Controller {
         $client->analysts()->detach();
         $client->analysts()->attach($analysts);
 
-        return redirect('assignments')->with('status', 'Successfully updated analysts assignment!');
+        return redirect('assignments')->with('status', 'Asignación actualizada éxitosamente!');
     }
 }

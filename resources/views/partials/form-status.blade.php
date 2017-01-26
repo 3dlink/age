@@ -2,7 +2,7 @@
 	<div class="success message dismissible">
 		<i class="material-icons status">&#xE876;</i>
 		<h4>
-		  	Success
+		  	Éxito
 		</h4>
 		<p>
 		  	{{ session('status') }}

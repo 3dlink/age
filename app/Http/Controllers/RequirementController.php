@@ -49,8 +49,7 @@ class RequirementController extends Controller
             'user'                    => $user,
             'requirements'            => $requirements,
             'total_requirements'      => $total_requirements
-            ]
-            );
+        ]);
     }
 
     /**
@@ -123,7 +122,7 @@ class RequirementController extends Controller
 
             $requirement->save();
 
-            return redirect('requirement')->with('status', 'Successfully created requirement ticket!');
+            return redirect('requirement')->with('status', 'Ticket de Requerimiento creado éxitosamente!');
         }
     }
 
@@ -221,7 +220,7 @@ class RequirementController extends Controller
 
             $requirement->save();
 
-            return redirect('requirement')->with('status', 'Successfully updated requirement ticket!');
+            return redirect('requirement')->with('status', 'Ticket de Requerimiento actualizado éxitosamente!');
         }
     }
 
@@ -241,7 +240,7 @@ class RequirementController extends Controller
 
         $requirement->delete();
 
-        return redirect('requirement')->with('status', 'Successfully deleted the requirement!');
+        return redirect('requirement')->with('status', 'Ticket de Requerimiento eliminado éxitosamente!');
     }
 
     public function create_new_validator(array $data)
@@ -251,7 +250,12 @@ class RequirementController extends Controller
             'subject'               => 'required|exists:subjects,id',
             'upload'                => 'mimes:doc,docx,pdf',
             'description'           => 'required'
-            ]);
+        ], [
+            'priority.required'     => 'Seleccione una prioridad',
+            'subject.required'      => 'Seleccione un asunto',
+            'upload.mimes'          => 'El archivo seleccionado no es válido',
+            'description.required'  => 'Ingrese una descripción'
+        ]);
     }
 
     public function getRequirementFile($user, $id, $file)

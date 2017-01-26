@@ -27,7 +27,7 @@ Reporte
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ url('/report') }}">
 		<span itemprop="name">
-			Listado de Reportes
+			Reportes
 		</span>
 	</a>
 	<i class="material-icons">chevron_right</i>

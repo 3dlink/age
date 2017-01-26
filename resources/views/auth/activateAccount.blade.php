@@ -1,7 +1,7 @@
 @extends('auth')
 
 @section('template_title')
-	Activation Sent
+	Activación enviada
 @endsection
 
 
@@ -24,7 +24,7 @@
 		                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		                    <h2 class="mdl-card__title-text text-center full-span block">
 
-		                        Confimation Sent
+		                        Activación enviada
 
 		                    </h2>
 		                </div>

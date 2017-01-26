@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
         <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-        <title>Your password reset request</title>
+        <title>Solicitud de reinicio de contraseña</title>
         <meta name="description" content="Your password reset request">
         <meta name="author" content="Jeremy Kenedy">
         <style type="text/css">

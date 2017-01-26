@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Show Analysts
+	Mostrando Analistas
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ dialog + .backdrop {
 @endsection
 
 @section('header')
-	Showing All Analysts
+	Mostrando Todos los Analistas
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ dialog + .backdrop {
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="#" disabled>
 			<span itemprop="name">
-				Analysts List
+				Analistas
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />
@@ -53,11 +53,11 @@ dialog + .backdrop {
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_users === 1)
-			    {{ $total_users }} User total
+			    {{ $total_users }} Analista en Total
 			@elseif ($total_users > 1)
-			    {{ $total_users }} Total Analysts
+			    {{ $total_users }} Analistas en Total
 			@else
-			    No Analysts :(
+			    Sin Analistas :(
 			@endif
 		</h2>
 	</div>
@@ -66,11 +66,11 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">Name</th>
-					<th class="mdl-data-table__cell--non-numeric">Email</th>
-					<th class="mdl-data-table__cell--non-numeric">Phone</th>
+					<th class="mdl-data-table__cell--non-numeric">Nombre</th>
+					<th class="mdl-data-table__cell--non-numeric">Correo Electrónico</th>
+					<th class="mdl-data-table__cell--non-numeric">Teléfono</th>
 					<th class="mdl-data-table__cell--non-numeric">Skype</th>
-					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -84,7 +84,7 @@ dialog + .backdrop {
 							@if($user->hasRole('usuario'))
 							@if($a_user->hasRole('analista') || $a_user->hasRole('supervisor'))
 								{{-- VIEW TASK ICON BUTTON --}}
-								<a href="{{ url('/analyst/'.$a_user->name.'/'.date('Y', strtotime($date)).'/'.date('W', strtotime($date))) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View Analyst Tasks">
+								<a href="{{ url('/analyst/'.$a_user->name.'/'.date('Y', strtotime($date)).'/'.date('W', strtotime($date))) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver Actividades">
 									<i class="material-icons">list</i>
 								</a>
 							@endif
@@ -102,9 +102,9 @@ dialog + .backdrop {
 			  	<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 			  	<label class="mdl-textfield__label" for="search_table">
-			  		Search Terms
+			  		Buscar
 			  	</label>
 			</div>
 		</div>

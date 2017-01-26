@@ -4,7 +4,7 @@
 	    <meta charset="utf-8">
 	    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 	    <meta content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
-	    <title>Not Found | Error 404 | larablog.io</title>
+	    <title>No se ha encontrado la página | Error 404 | 3Dlink</title>
 	    <meta content="Sorry, the page or image you are looking for cannot be found. Error 404." name="description">
 	    <meta content="Jeremy Edgar Kenedy" name="author">
 	    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport">
@@ -40,14 +40,14 @@
 	        <div class="content" style="margin: 16% auto 0px; ">
 	            <div class="wrap">
 	                <p class="title">Error 404.</p>
-	                <p class="text">Sorry, the page or image you are looking for cannot be found.</p>
+	                <p class="text">Disculpe, la página que busca no pudo ser encontrada.</p>
 	            </div>
 	            <div class="wrap">
 	                <div class="left size-6">
-	                    <a class="button border fast" href="/">HOME</a>
+	                    <a class="button border fast" href="{{url('/')}}">Inicio</a>
 	                </div>
 	                <div class="left size-6">
-	                    <a class="button border fast" href="/login/">LOGIN</a>
+	                    <a class="button border fast" href="{{url('/login')}}">Entrar</a>
 	                </div>
 	            </div>
 	        </div>

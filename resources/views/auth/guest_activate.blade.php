@@ -1,7 +1,7 @@
 @extends('auth')
 
 @section('template_title')
-	Activation Required
+	Activación requerida
 @endsection
 
 @section('template_fastload_css')
@@ -22,11 +22,11 @@
 			       	<div class="demo-card-full mdl-card mdl-shadow--2dp">
 		                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		                    <h2 class="mdl-card__title-text text-center full-span block">
-		                        Activation Required
+		                        Activación requerida
 		                    </h2>
 		                </div>
 		                <div class="mdl-card__supporting-text ">
-							<p>An email was sent to {{ $email }} on {{ $date }}.</p>
+							<p>Un correo fue enviado a {{ $email }} el {{ $date }}.</p>
 							<p>{{ Lang::get('auth.clickInEmail') }}</p>
 							<p>
 								{!! HTML::link(url('/resendEmail'), Lang::get('auth.clickHereResend'), array('id' => '', 'class' => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect center')) !!}

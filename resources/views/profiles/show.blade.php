@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	{{ $user->name }}'s Profile
+	Perfil de {{ $user->name }}
 @endsection
 
 @section('template_fastload_css')
@@ -28,7 +28,7 @@
 	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ url('/users') }}">
 			<span itemprop="name">
-				Users List
+				Usuarios
 			</span>
 		</a>
 		<i class="material-icons">chevron_right</i>
@@ -38,7 +38,7 @@
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="#" disabled>
 			<span itemprop="name">
-				User Profile
+				Perfil
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />

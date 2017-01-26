@@ -27,7 +27,7 @@ Actividad
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ route('analysts') }}">
 		<span itemprop="name">
-			Analysts
+			Analistas
 		</span>
 	</a>
 	<i class="material-icons">chevron_right</i>
@@ -36,7 +36,7 @@ Actividad
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{!! url('/analyst/'.$task->user->name.'/'.$year.'/'.$week) !!}">
 		<span itemprop="name">
-			Listado de Actividades de {{$task->user->first_name.' '.$task->user->last_name}}
+			Actividades de {{$task->user->first_name.' '.$task->user->last_name}}
 		</span>
 	</a>
 	<i class="material-icons">chevron_right</i>
@@ -88,7 +88,7 @@ Actividad
 								</div>
 
 								<div class="mdl-cell mdl-cell--12-col">
-									<label class="mdl-color-text--indigo">Duracion: </label>
+									<label class="mdl-color-text--indigo">Duración: </label>
 									{{$task->cant_horas/60}}
 								</div>
 

@@ -69,12 +69,23 @@ class AuthController extends Controller {
 	public function validator(array $data)
 	{
 		return Validator::make($data, [
-			'name' 					=> 'required|max:255|unique:users',
-			'first_name' 			=> 'required|max:255',
-			'last_name' 			=> 'required|max:255',
-			'email' 				=> 'required|email|max:255|unique:users',
-            'password'              => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6|same:password',
+			'name' 								=> 'required|max:255|unique:users',
+			'first_name' 						=> 'required|max:255',
+			'last_name' 						=> 'required|max:255',
+			'email' 							=> 'required|email|max:255|unique:users',
+            'password'              			=> 'required|min:6|confirmed',
+            'password_confirmation' 			=> 'required|same:password',
+		],[
+			'name.required'						=> 'Ingrese un nombre de usuario',
+			'name.max'							=> 'La longitud del nombre de usuario no puede ser mayor a 255 carácteres',
+			'name.unique'						=> 'El nombre de usuario ya existe',
+			'first_name.required'				=> 'Ingrese un nombre',
+			'last_name.required'				=> 'Ingrese un apellido',
+			'email.required'					=> 'Ingrese un correo electrónico',
+			'password.required'					=> 'Ingrese una contraseña',
+			'password.min'						=> 'Su contraseña debe tener al menos 6 carácteres',
+			'password_confirmation.required'	=> 'Confirme su contraseña',
+			'password_confirmation.same'		=> 'Sus contraseñas deben coincidir',
 		]);
 	}
 
@@ -173,104 +184,5 @@ class AuthController extends Controller {
 		return redirect('home');
 
 	}
-
-    // public function getSocialRedirect( $provider )
-    // {
-    //     $providerKey = \Config::get('services.' . $provider);
-    //     if(empty($providerKey))
-    //         return view('pages.status')->with('error','No such provider');
-
-    //     return Socialite::driver( $provider )->redirect();
-
-    // }
-
-    // public function getSocialHandle( $provider )
-    // {
-
-    //     $user = Socialite::driver( $provider )->user();
-
-    //     $social_user = null;
-
-    //     //CHECK IF USERS EMAIL ADDRESS IS ALREADY IN DATABASE
-    //     $user_check = User::where('email', '=', $user->email)->first();
-    //     if(!empty($user_check))
-    //     {
-    //         $social_user = $user_check;
-    //     }
-    //     else // USER IS NOT IN DATABASE BASED ON EMAIL ADDRESS
-    //     {
-
-    //         $same_social_id = Social::where('social_id', '=', $user->id)->where('provider', '=', $provider )->first();
-    //         // CHECK IF NEW SOCIAL MEDIA USER
-    //         if(empty($same_social_id))
-    //         {
-
-    //             $new_social_user 					= new User;
-    //             $new_social_user->email            	= $user->email;
-    //             $name 								= explode(' ', $user->name);
-				// if ($user->email) {
-				// 	$new_social_user->name         	= $user->email;
-				// } else {
-				// 	$new_social_user->name			= $name[0];
-				// }
-    //             $new_social_user->first_name      	= $name[0];
-
-    //             // CHECK FOR LAST NAME
-    //             if (isset($name[1])) {
-    //             	$new_social_user->last_name     = $name[1];
-    //             }
-
-    //             $new_social_user->active           					= '1';
-				// $the_activation_code 								= str_random(60) . $user->email;
-				// $new_social_user->activation_code 					= $the_activation_code;
-
-				// // GET IP ADDRESS
-				// $userIpAddress 										= new CaptureIp;
-				// $new_social_user->signup_sm_ip_address				= $userIpAddress->getClientIp();
-
-    //             $new_social_user->save();
-    //             $social_data 										= new Social;
-    //             $social_data->social_id 							= $user->id;
-    //             $social_data->provider 								= $provider;
-    //             $new_social_user->social()->save($social_data);
-
-    //             // ADD ROLE
-    //             $role = Role::whereName('user')->first();
-    //             $new_social_user->assignRole($role);
-
-				// // TODO: ADD LOGIC TO CAPTURE SOCIAL LOGIN USERNAME AND SAVE IT TO PROFILE
-
-    //             $social_user = $new_social_user;
-
-    //             // LINK TO PROFILE TABLE
-	   //          $profile = new Profile;
-	   //          $social_user->profile()->save($profile);
-
-    //         }
-    //         else
-    //         {
-    //             //Load this existing social user
-    //             $social_user = $same_social_id->user;
-    //         }
-
-    //     }
-
-    //     $this->auth->login($social_user, true);
-
-    //     if( $this->auth->user()->hasRole('user'))
-    //     {
-    //         //return redirect()->route('user.home');
-    //     	return redirect('app');
-    //     }
-
-    //     if( $this->auth->user()->hasRole('administrator'))
-    //     {
-    //     	return redirect('app');
-    //         //return redirect()->route('admin.home');
-    //     }
-
-    //     return \App::abort(500);
-    // }
-
 }
 

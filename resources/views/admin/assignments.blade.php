@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Clients Assigned
+Asignación de Analistas
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ dialog + .backdrop {
 @endsection
 
 @section('header')
-	Showing All Clients Assigned
+	Mostrando Todos los Clientes con Analistas Asignados
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ dialog + .backdrop {
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ route('assignments') }}" disabled>
 			<span itemprop="name">
-				Analysts Assignments List
+				Asignación de Analistas
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />
@@ -48,11 +48,11 @@ dialog + .backdrop {
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_clients === 1)
-			    {{ $total_clients }} Client total
+			    {{ $total_clients }} Cliente en Total
 			@elseif ($total_clients > 1)
-			    {{ $total_clients }} Total Clients assigned
+			    {{ $total_clients }} Clientes en Total
 			@else
-			    No Clients assigned :(
+			    Sin Clientes :(
 			@endif
 		</h2>
 	</div>
@@ -61,13 +61,13 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">Client</th>
-					<th class="mdl-data-table__cell--non-numeric">Email</th>
-					<th class="mdl-data-table__cell--non-numeric">Phone</th>
+					<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+					<th class="mdl-data-table__cell--non-numeric">Correo Electrónico</th>
+					<th class="mdl-data-table__cell--non-numeric">Número telefónico</th>
 					<th class="mdl-data-table__cell--non-numeric">Skype</th>
-					<th class="mdl-data-table__cell--non-numeric">Assigned analysts</th>
+					<th class="mdl-data-table__cell--non-numeric">Analistas asignados</th>
 					@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
-					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 					@endif
 			    </tr>
 			  </thead>
@@ -96,14 +96,14 @@ dialog + .backdrop {
 							<td class="mdl-data-table__cell--non-numeric">
 
 								{{-- EDIT CLIENT ASSIGNMENT ICON BUTTON --}}
-								<a href="{{ URL::to('assign/' . $a_client->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<a href="{{ URL::to('assign/' . $a_client->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Editar">
 									<i class="material-icons">edit</i>
 								</a>
 
 								{{-- DELETE ICON BUTTON AND FORM CALL --}}
 								{!! Form::open(array('url' => 'assign/' . $a_client->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_client->id)) !!}
 									{!! Form::hidden('_method', 'DELETE') !!}
-									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_client->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_client->id}}">
+									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_client->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_client->id}}" title="Eliminar">
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}
@@ -117,7 +117,7 @@ dialog + .backdrop {
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
     	@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
-		<a href="{{ route('analyst.assign') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+		<a href="{{ route('analyst.assign') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Asignar Analistas">
 			<i class="material-icons">person_add</i>
 		</a>
 		@endif
@@ -126,9 +126,9 @@ dialog + .backdrop {
 			  	<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 			  	<label class="mdl-textfield__label" for="search_table">
-			  		Search Terms
+			  		Buscar
 			  	</label>
 			</div>
 		</div>

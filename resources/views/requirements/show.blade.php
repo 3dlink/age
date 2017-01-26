@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Requirement Tickets
+Tickets de Requerimiento
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ dialog + .backdrop {
 @endsection
 
 @section('header')
-	Showing All Requirement Tickets
+	Mostrando Todos los Tickets de Requerimiento
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ dialog + .backdrop {
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="#" disabled>
 			<span itemprop="name">
-				Requirement Tickets List
+				Tickets de Requerimiento
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />
@@ -51,9 +51,9 @@ dialog + .backdrop {
 			@if ($total_requirements === 1)
 			    {{ $total_requirements }} Requirement Ticket total
 			@elseif ($total_requirements > 1)
-			    {{ $total_requirements }} Total Requirement Tickets
+			    {{ $total_requirements }} Total Tickets de Requerimiento
 			@else
-			    No Requirement Tickets :(
+			    No Tickets de Requerimiento :(
 			@endif
 		</h2>
 	</div>
@@ -62,11 +62,12 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">Subject</th>
-					<th class="mdl-data-table__cell--non-numeric">Priority</th>
+					<th class="mdl-data-table__cell--non-numeric">Asunto</th>
+					<th class="mdl-data-table__cell--non-numeric">Prioridad</th>
 					<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
-					<th class="mdl-data-table__cell--non-numeric">Assigned Analyst</th>
-					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					<th class="mdl-data-table__cell--non-numeric">Analista asignado</th>
+					<th class="mdl-data-table__cell--non-numeric">Creado por</th>
+					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -81,40 +82,41 @@ dialog + .backdrop {
 							@else
 							Unnasigned
 							@endif
+							<td class="mdl-data-table__cell--non-numeric">{{$a_req->creator->first_name.' '.$a_req->creator->last_name}}</td>
 							<td class="mdl-data-table__cell--non-numeric">
 								{{-- DOWNLOAD REQUIREMENT ARCHIVE ICON BUTTON --}}
 								@if(!empty($a_req->archive))
-								<a href="{{ url($a_req->archive) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Download">
+								<a href="{{ url($a_req->archive) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Descargar archivo adjunto">
 									<i class="material-icons">get_app</i>
 								</a>
 								@endif
 
 								@if(\Auth::user()->hasRole('supervisor') || \Auth::user()->hasRole('super administrador'))
 									@if(!empty($a_req->analyst))
-									<a href="{{ URL::to('requirement/assign/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Assign analyst">
+									<a href="{{ URL::to('requirement/assign/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Cambiar Analista">
 										<i class="material-icons">perm_identity</i>
 									</a>
 									@else
-									<a href="{{ url('requirement/assign/create/'.$a_req->id) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Assign analyst">
+									<a href="{{ url('requirement/assign/create/'.$a_req->id) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Asignar Analista">
 										<i class="material-icons">person_add</i>
 									</a>
 									@endif
 								@endif
 
 								{{-- SHOW REQUIREMENT ICON BUTTON --}}
-								<a href="{{ route('requirement.show', $a_req->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+								<a href="{{ route('requirement.show', $a_req->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 									<i class="material-icons">visibility</i>
 								</a>
 								@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('supervisor'))
 								{{-- EDIT REQUIREMENT ICON BUTTON --}}
-								<a href="{{ URL::to('requirement/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Edit requirement">
+								<a href="{{ URL::to('requirement/' . $a_req->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Editar Requerimiento">
 									<i class="material-icons">edit</i>
 								</a>
 								@if(\Auth::user()->hasRole('super administrador'))
 								{{-- DELETE ICON BUTTON AND FORM CALL --}}
 								{!! Form::open(array('url' => 'requirement/' . $a_req->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_req->id)) !!}
 									{!! Form::hidden('_method', 'DELETE') !!}
-									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_req->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_req->id}}" title="Delete requirement">
+									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_req->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_req->id}}" title="Eliminar Requerimiento">
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}
@@ -129,7 +131,7 @@ dialog + .backdrop {
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
     	@if(\Auth::user()->hasRole('super administrador') || \Auth::user()->hasRole('usuario'))
-		<a href="{{ url('/requirement/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+		<a href="{{ url('/requirement/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Generar Ticket de Requerimiento">
 			<i class="material-icons">add</i>
 		</a>
 		@endif
@@ -138,9 +140,9 @@ dialog + .backdrop {
 			  	<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 			  	<label class="mdl-textfield__label" for="search_table">
-			  		Search Terms
+			  		Buscar
 			  	</label>
 			</div>
 		</div>

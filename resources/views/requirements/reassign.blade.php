@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Assign Analyst
+	Asignar Analista
 @endsection
 
 @section('template_fastload_css')
@@ -22,7 +22,7 @@ rd-time-list{
 @endsection
 
 @section('header')
-	Assign Analyst
+	Asignar Analista
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@ rd-time-list{
 	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ url('/requirement') }}">
 			<span itemprop="name">
-				Requirement Ticket List
+				Tickets de Requerimiento
 			</span>
 		</a>
 		<i class="material-icons">chevron_right</i>
@@ -49,7 +49,7 @@ rd-time-list{
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ route('analyst.assign') }}">
 			<span itemprop="name">
-				Assign Analyst
+				Asignar Analista
 			</span>
 		</a>
 		<meta itemprop="position" content="3" />
@@ -61,7 +61,7 @@ rd-time-list{
 	    <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
 			<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-				<h2 class="mdl-card__title-text">Assign Analyst</h2>
+				<h2 class="mdl-card__title-text">Asignar Analista</h2>
 			</div>
 
 			{!! Form::model($requirement, array('action' => array('AssignRequirementController@update', $requirement->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
@@ -77,8 +77,8 @@ rd-time-list{
 									    <label for="analyst">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('analyst', 'Analyst', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select analyst</span>
+										{!! Form::label('analyst', 'Analista', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 
@@ -88,8 +88,8 @@ rd-time-list{
 									    <label for="requirement">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('requirement', 'requirement', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select requirement</span>
+										{!! Form::label('requirement', 'Requerimiento', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 							</div>
@@ -104,7 +104,7 @@ rd-time-list{
 
 							{{-- SAVE BUTTON--}}
 							<span class="save-actions">
-								{!! Form::button('<i class="material-icons">save</i> Save Assignment', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+								{!! Form::button('<i class="material-icons">save</i> Guardar Asignación', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
 							</span>
 
 						</div>
@@ -115,7 +115,7 @@ rd-time-list{
 
 					{{-- SAVE ICON --}}
 					<span class="save-actions">
-						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save Assignment')) !!}
+						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Guardar Asignación')) !!}
 					</span>
 			    </div>
 

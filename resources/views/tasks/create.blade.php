@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Create New Task
+	Crear Actividad
 @endsection
 
 @section('template_fastload_css')
@@ -22,7 +22,7 @@ rd-time-list{
 @endsection
 
 @section('header')
-	Create New Task
+	Crear Actividad
 @endsection
 
 @section('content')
@@ -40,7 +40,7 @@ rd-time-list{
 	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ url('/task') }}">
 			<span itemprop="name">
-				Task List
+				Actividades
 			</span>
 		</a>
 		<i class="material-icons">chevron_right</i>
@@ -49,7 +49,7 @@ rd-time-list{
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ route('task.create') }}">
 			<span itemprop="name">
-				Create New Task
+				Crear Actividad
 			</span>
 		</a>
 		<meta itemprop="position" content="3" />
@@ -61,7 +61,7 @@ rd-time-list{
 	    <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
 			<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-				<h2 class="mdl-card__title-text">Create New Task</h2>
+				<h2 class="mdl-card__title-text">Crear Actividad</h2>
 			</div>
 
 			{!! Form::open(array('action' => 'TaskController@store', 'method' => 'POST', 'role' => 'form')) !!}
@@ -78,8 +78,8 @@ rd-time-list{
 									    <label for="admin">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('admin', 'Select analyst', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select analyst</span>
+										{!! Form::label('admin', 'Seleccionar Analista', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 							@else
@@ -92,15 +92,15 @@ rd-time-list{
 									    <label for="client">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('client', 'Select client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select client</span>
+										{!! Form::label('client', 'Seleccionar Cliente', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('date') ? 'is-invalid' :'' }}">
 										{!! Form::text('date', NULL, array('id' => 'date', 'class' => 'mdl-textfield__input')) !!}
-										{!! Form::label('date', 'Date', array('class' => 'mdl-textfield__label')); !!}
+										{!! Form::label('date', 'Fecha', array('class' => 'mdl-textfield__label')); !!}
 										<!-- <span class="mdl-textfield__error">Letters and numbers only</span> -->
 									</div>
 								</div>
@@ -108,14 +108,14 @@ rd-time-list{
 								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 							        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('start_hour') ? 'is-invalid' :'' }}">
 							            {!! Form::text('start_hour', NULL, array('id' => 'start_hour', 'class' => 'mdl-textfield__input')) !!}
-							            {!! Form::label('start_hour', 'Start hour', array('class' => 'mdl-textfield__label')); !!}
+							            {!! Form::label('start_hour', 'Hora de inicio', array('class' => 'mdl-textfield__label')); !!}
 							            <!-- <span class="mdl-textfield__error">Letters only</span> -->
 							        </div>
 							  	</div>
 							  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('hours') ? 'is-invalid' :'' }}">
 								        {!! Form::text('hours', NULL, array('id' => 'hours', 'class' => 'mdl-textfield__input')) !!}
-								        {!! Form::label('hours', 'Number of hours', array('class' => 'mdl-textfield__label')); !!}
+								        {!! Form::label('hours', 'Duración', array('class' => 'mdl-textfield__label')); !!}
 								        <!-- <span class="mdl-textfield__error">Letters only</span> -->
 								    </div>
 							  	</div>
@@ -126,15 +126,15 @@ rd-time-list{
 									    <label for="type">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('type', 'Task type', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select type</span>
+										{!! Form::label('type', 'Tipo de actividad', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 
 								<div class="mdl-cell mdl-cell--12-col">
 								    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
 								        {!! Form::textarea('description',  NULL, array('id' => 'description', 'class' => 'mdl-textfield__input')) !!}
-								        {!! Form::label('description', 'Description', array('class' => 'mdl-textfield__label')); !!}
+								        {!! Form::label('description', 'Descripción', array('class' => 'mdl-textfield__label')); !!}
 								    </div>
 								</div>
 							</div>
@@ -149,7 +149,7 @@ rd-time-list{
 
 							{{-- SAVE BUTTON--}}
 							<span class="save-actions">
-								{!! Form::button('<i class="material-icons">save</i> Save New Task', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+								{!! Form::button('<i class="material-icons">save</i> Guardar Actividad', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
 							</span>
 
 						</div>
@@ -160,7 +160,7 @@ rd-time-list{
 
 					{{-- SAVE ICON --}}
 					<span class="save-actions">
-						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save New Task')) !!}
+						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Guardar Actividad')) !!}
 					</span>
 			    </div>
 

@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
+Editando Actividad
 @endsection
 
 @section('template_fastload_css')
@@ -25,7 +25,7 @@ background: rgba(0,0,0,0.8);
 @endsection
 
 @section('header')
-Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
+Editando Actividad
 @endsection
 
 @section('breadcrumbs')
@@ -42,7 +42,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ url('/task') }}">
 		<span itemprop="name">
-			Tasks List
+			Actividades
 		</span>
 	</a>
 	<i class="material-icons">chevron_right</i>
@@ -51,7 +51,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="/task/{{ $task->id }}/edit">
 		<span itemprop="name">
-			Editing task #{{ $task->id }}
+			Editando Actividad
 		</span>
 	</a>
 	<meta itemprop="position" content="4" />
@@ -79,7 +79,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 	<div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
 
 		<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-			<h2 class="mdl-card__title-text">Editing task #{{ $task->id }}</h2>
+			<h2 class="mdl-card__title-text">Editando Actividad</h2>
 		</div>
 
 		{!! Form::model($task, array('action' => array('TaskController@update', $task->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data')) !!}
@@ -98,8 +98,8 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 									<label for="admin">
 										<i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									</label>
-									{!! Form::label('admin', 'Select analyst', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-									<span class="mdl-textfield__error">Select analyst</span>
+									{!! Form::label('admin', 'Seleccionar Analista', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+									<span class="mdl-textfield__error"></span>
 								</div>
 							</div>
 							@endif
@@ -110,15 +110,15 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 									    <label for="client">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('client', 'Select client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select client</span>
+										{!! Form::label('client', 'Seleccionar Cliente', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('date') ? 'is-invalid' :'' }}">
 								{!! Form::text('date', date('Y-m-d', strtotime($task->fecha)), array('id' => 'date', 'class' => 'mdl-textfield__input')) !!}
-									{!! Form::label('date', 'Date', array('class' => 'mdl-textfield__label')); !!}
+									{!! Form::label('date', 'Fecha', array('class' => 'mdl-textfield__label')); !!}
 									<!-- <span class="mdl-textfield__error">Letters and numbers only</span> -->
 								</div>
 							</div>
@@ -126,14 +126,14 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('start_hour') ? 'is-invalid' :'' }}">
 									{!! Form::text('start_hour', date('H:i', strtotime($task->hora_inicio)), array('id' => 'start_hour', 'class' => 'mdl-textfield__input')) !!}
-									{!! Form::label('start_hour', 'Start hour', array('class' => 'mdl-textfield__label')); !!}
+									{!! Form::label('start_hour', 'Hora de inicio', array('class' => 'mdl-textfield__label')); !!}
 									<!-- <span class="mdl-textfield__error">Letters only</span> -->
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('hours') ? 'is-invalid' :'' }}">
 									{!! Form::text('hours', toHours($task->cant_horas), array('id' => 'hours', 'class' => 'mdl-textfield__input')) !!}
-									{!! Form::label('hours', 'Number of hours', array('class' => 'mdl-textfield__label')); !!}
+									{!! Form::label('hours', 'Duración', array('class' => 'mdl-textfield__label')); !!}
 									<!-- <span class="mdl-textfield__error">Letters only</span> -->
 								</div>
 							</div>
@@ -144,15 +144,15 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 									<label for="type">
 										<i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									</label>
-									{!! Form::label('type', 'Task type', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-									<span class="mdl-textfield__error">Select type</span>
+									{!! Form::label('type', 'Tipo de Actividad', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+									<span class="mdl-textfield__error"></span>
 								</div>
 							</div>
 
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
 									{!! Form::textarea('description',  $task->descripcion, array('id' => 'description', 'class' => 'mdl-textfield__input')) !!}
-									{!! Form::label('description', 'Description', array('class' => 'mdl-textfield__label')); !!}
+									{!! Form::label('description', 'Descripción', array('class' => 'mdl-textfield__label')); !!}
 								</div>
 							</div>
 						</div>
@@ -166,7 +166,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 
 						{{-- SAVE BUTTON--}}
 						<span class="save-actions">
-							{!! Form::button('<i class="material-icons">save</i> <span class="hide-mobile">Save</span> <span class="hide-tablet">Changes</span>', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+							{!! Form::button('<i class="material-icons">save</i> <span class="hide-mobile">Guardar</span> <span class="hide-tablet">Cambios</span>', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
 						</span>
 					</div>
 				</div>
@@ -176,7 +176,7 @@ Editing {{ $task->user->first_name.' '.$task->user->last_name }} task
 
 				{{-- SAVE ICON --}}
 				<span class="save-actions">
-					{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save Changes')) !!}
+					{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Guardar Cambios')) !!}
 				</span>
 			</div>
 

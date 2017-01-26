@@ -18,27 +18,27 @@ return [
 	'noProfileYet'				=> 'No profile yet.',
 
 	// USER PROFILE TITLES
-	'showProfileUsername'		=> 'Username',
-	'showProfileFirstName'		=> 'First Name',
-	'showProfileLastName'		=> 'Last Name',
-	'showProfileEmail'			=> 'E-mail Address',
-	'showProfileLocation'		=> 'Location',
-	'showProfileBio'			=> 'Bio',
+	'showProfileUsername'		=> 'Nombre de usuario',
+	'showProfileFirstName'		=> 'Nombre',
+	'showProfileLastName'		=> 'Apellido',
+	'showProfileEmail'			=> 'Correo electrónico',
+	'showProfileLocation'		=> 'Ubicacion',
+	'showProfileBio'			=> 'Biografía',
 	'showProfileTwitterUsername'=> 'Twitter Username',
 	'showProfileGitHubUsername'	=> 'Github Username',
 
 	// USER PROFILE PAGE
-	'showProfileTitle'			=> ':username\'s Profile',
+	'showProfileTitle'			=> 'Perfil de :username',
 
 	// USER EDIT PROFILE PAGE
-	'editProfileTitle'			=> 'Edit User Profile',
+	'editProfileTitle'			=> 'Editar Perfil de Usuario',
 
 	// USER EDIT PROFILE FORM
 	'label-location'			=> 'Your location:',
 	'ph-location'				=> 'Enter your location',
 
-	'label-bio'					=> 'Your bio:',
-	'ph-bio'					=> 'Enter your bio',
+	'label-bio'					=> 'Tu biografía:',
+	'ph-bio'					=> 'Ingresa tu biografía',
 
 	'label-github_username'		=> 'Your GitHub username:',
 	'ph-github_username'		=> 'Enter your GitHub username',
@@ -46,7 +46,7 @@ return [
 	'label-twitter_username'	=> 'Your Twitter username:',
 	'ph-twitter_username'		=> 'Enter your Twitter username',
 
-	'submitButton'				=> 'Save',
-	'submitChangesButton'		=> 'Save Changes'
+	'submitButton'				=> 'Guardar',
+	'submitChangesButton'		=> 'Guardar cambios'
 
 ];

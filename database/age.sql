@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-01-2017 a las 20:38:10
+-- Tiempo de generación: 25-01-2017 a las 22:34:53
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 5.6.28
 
@@ -134,7 +134,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `user_id`, `bio`, `phone`, `skype_user`, `profile_pic`, `created_at`, `updated_at`, `user_profile_bg`) VALUES
-(7, 10, '', '04242337767', 'daniel.corcega', '/images/profile/10/pics/user-pic.gif', '2017-01-17 23:26:43', '2017-01-23 16:55:50', 'default-user-bg.jpg'),
+(7, 10, '', '04242337767', 'daniel.corcega', '/images/profile/10/pics/user-pic.gif', '2017-01-17 23:26:43', '2017-01-25 23:50:33', 'default-user-bg.jpg'),
 (8, 11, '', '04242337767', 'daniel.corcega', '', '2017-01-18 03:17:44', '2017-01-18 03:17:44', 'default-user-bg.jpg'),
 (9, 12, '', '', 'daniel.corcega', '', '2017-01-18 03:23:45', '2017-01-18 03:23:45', 'default-user-bg.jpg'),
 (10, 13, '', '', '', '', '2017-01-19 17:13:49', '2017-01-19 17:13:49', 'default-user-bg.jpg'),
@@ -164,7 +164,8 @@ CREATE TABLE `reports` (
 
 INSERT INTO `reports` (`id`, `name`, `storage`, `extension`, `description`, `belongs_to`, `uploaded_by`, `created_at`, `updated_at`) VALUES
 (3, 'tests test', '/files/users/10/reports/tests_test.pdf', 'pdf', 'asdasd', 15, 10, '2017-01-20 01:36:27', '2017-01-23 16:38:40'),
-(4, 'cbh dia', '/files/users/10/reports/cbh_dia.pdf', 'pdf', 'sadasdad', 11, 10, '2017-01-23 16:33:46', '2017-01-23 16:33:46');
+(4, 'cbh dia', '/files/users/10/reports/cbh_dia.pdf', 'pdf', 'sadasdad', 11, 10, '2017-01-23 16:33:46', '2017-01-23 16:33:46'),
+(5, 'GooGopowerrangers', '/files/users/13/reports/GooGopowerrangers.pdf', 'pdf', 'descripciion', 15, 13, '2017-01-26 01:16:22', '2017-01-26 01:16:22');
 
 -- --------------------------------------------------------
 
@@ -289,7 +290,8 @@ INSERT INTO `tasks` (`id`, `fecha`, `hora_inicio`, `cant_horas`, `descripcion`, 
 (3, '2017-01-24', '11:00:00', 1410, 'clases', '1', 13, 15, '2017-01-19 17:14:55', '2017-01-25 20:07:37'),
 (4, '2017-01-24', '07:00:00', 1410, 'arreglos a las tareas', '2', 13, 15, '2017-01-24 17:41:38', '2017-01-25 20:06:42'),
 (5, '2017-01-27', '00:30:00', 420, 'asdsad', '1', 13, 15, '2017-01-25 20:07:01', '2017-01-25 21:01:01'),
-(6, '2017-01-26', '01:00:00', 180, 'sdsad', '2', 13, 15, '2017-01-25 20:08:38', '2017-01-25 20:08:38');
+(6, '2017-01-26', '01:00:00', 180, 'sdsad', '2', 13, 15, '2017-01-25 20:08:38', '2017-01-25 20:08:38'),
+(7, '2017-01-27', '01:00:00', 120, 'asdasd', '2', 13, 15, '2017-01-26 01:12:15', '2017-01-26 01:12:15');
 
 -- --------------------------------------------------------
 
@@ -322,11 +324,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `password`, `activation_code`, `active`, `resent`, `role_id`, `remember_token`, `signup_ip_address`, `signup_confirmation_ip_address`, `signup_sm_ip_address`, `admin_ip_address`, `created_at`, `updated_at`) VALUES
-(10, 'admin', 'Daniel', 'Corcega', 'danicorcega@gmail.com', '$2y$10$lZ/EDBGcs60bmrw6OrwSpOKL7BS9TTJP.0xlAcixSY0DmF11buSDK', '', 1, 0, 1, 'lYbg9PYgvY1AdCGGGkQKEKldfra27fxpNxPQ0rWsCpzSh0HKlB1wJLcK2ZSG', '::1', '::1', '', '', '2017-01-17 23:26:39', '2017-01-20 06:37:34'),
-(11, 'Danic', 'Daniel', 'admin', 'admin@admin.com', '$2y$10$kVleqKq/b0eY9jjFvIdPRePsYrzuJ/z3ZjqcEsnnP3vemvaY0oKIG', 'SKXiCQP4Bo9Nr3HScj4m2LpOtglWWwinnO2znJgILAoSMuoNAQY4CpZLYha7admin@admin.com', 1, 0, 4, NULL, '', '', '', '::1', '2017-01-18 03:17:44', '2017-01-18 03:17:44'),
-(12, 'daniadmi', 'admin', 'Corcega', 'author@author.com', '$2y$10$v7KinkTzq/sq7zpv6iFU3e4dGyYuGUev9ImjpnaGKky2FSOn2VjuK', 'b03HtBUU7CISkcdPnqkyHY0wjqC5gufMGAxgN5jY8phTNTetWFPzmpTpoPqyauthor@author.com', 1, 0, 2, NULL, '', '', '', '::1', '2017-01-18 03:23:45', '2017-01-18 03:23:45'),
-(13, 'español', 'Dani', 'analyst', 'author2@author.com', '$2y$10$CRjWM43qpkjh6F9IEEs4UOJbwDFjNcGpAxoJzJTqijV6W3hAKvqHG', 'xt36RXjttKx1GbB1FTnOZtzPBFCkFTnnBV2mysfOoiwHkmCJGugKcUPmdApkauthor2@author.com', 1, 0, 3, 'N2XcTAWv1VsIZBt2hfZCYfR6Ys10DEOgZgDgRa2K9MfSkgJJGtiVO0U27QhL', '', '', '', '::1', '2017-01-19 17:13:49', '2017-01-19 18:22:29'),
-(15, 'tests', 'test', 'test', 'test@test.com', '$2y$10$PputvrdIBfcerXpJu8I8SecK0rGsrpnkkJhhlEA/MXkQqJZVFS.iu', 'VeVAtQmCXBUTkCXEeUo6xZL154zqhhuE2yATodV5ATDhzqMhPnTwGnW3dm2Utest@test.com', 1, 0, 4, 'n1Xt4Va14oaMiHmWvu4ECmOqqZtmyxjC8OxoY28ZrvtEKuRJ540ufhNcc6r9', '', '', '', '::1', '2017-01-19 19:12:33', '2017-01-24 17:48:58');
+(10, 'admin', 'admin', 'admin', 'admin@admin.com', '$2y$10$Z/.7TbW0khchp6Da.ewUGO5viPII5XCV5.bWyJyCGt0pKuNihwgXe', '', 1, 0, 1, 'gCADIG4YWcrQbKSHl7KYzWVP77yd8JeuNNOCJUkJkxgwOxGUuOB1ZnAAhicp', '::1', '::1', '', '', '2017-01-17 23:26:39', '2017-01-26 01:30:28'),
+(11, 'cliente2', 'Cliente', 'dos', 'test2@client.com', '$2y$10$kVleqKq/b0eY9jjFvIdPRePsYrzuJ/z3ZjqcEsnnP3vemvaY0oKIG', 'SKXiCQP4Bo9Nr3HScj4m2LpOtglWWwinnO2znJgILAoSMuoNAQY4CpZLYha7admin@admin.com', 1, 0, 4, NULL, '', '', '', '::1', '2017-01-18 03:17:44', '2017-01-26 01:27:43'),
+(12, 'supervisor1', 'Supervisor', 'uno', 'test@supervisor.com', '$2y$10$v7KinkTzq/sq7zpv6iFU3e4dGyYuGUev9ImjpnaGKky2FSOn2VjuK', 'b03HtBUU7CISkcdPnqkyHY0wjqC5gufMGAxgN5jY8phTNTetWFPzmpTpoPqyauthor@author.com', 1, 0, 2, 'rIJLuYWDlBBR7zxiguig85yA3GB5vRGeGAKmfqUrekU26HFWG3EmlIiTi2zv', '', '', '', '::1', '2017-01-18 03:23:45', '2017-01-26 01:29:06'),
+(13, 'analista1', 'Analista', 'uno', 'test@analista.com', '$2y$10$CRjWM43qpkjh6F9IEEs4UOJbwDFjNcGpAxoJzJTqijV6W3hAKvqHG', 'xt36RXjttKx1GbB1FTnOZtzPBFCkFTnnBV2mysfOoiwHkmCJGugKcUPmdApkauthor2@author.com', 1, 0, 3, '5QtlvS4fni8pJZgCTqqS0BMYZctEm6bMsXHavDLlKbTFtrMgX3E9Xo7I5a24', '', '', '', '::1', '2017-01-19 17:13:49', '2017-01-26 01:28:31'),
+(15, 'cliente1', 'Cliente', 'uno', 'test@client.com', '$2y$10$PputvrdIBfcerXpJu8I8SecK0rGsrpnkkJhhlEA/MXkQqJZVFS.iu', 'VeVAtQmCXBUTkCXEeUo6xZL154zqhhuE2yATodV5ATDhzqMhPnTwGnW3dm2Utest@test.com', 1, 0, 4, 'WNQ80754ymbjy3erflKwEvS2VpDcNq8VcS4AQsOIZSjwQbC1L7wxHybKSOvm', '', '', '', '::1', '2017-01-19 19:12:33', '2017-01-26 01:27:09');
 
 --
 -- Índices para tablas volcadas
@@ -416,7 +418,7 @@ ALTER TABLE `analyst_client`
 -- AUTO_INCREMENT de la tabla `password_resets`
 --
 ALTER TABLE `password_resets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `priorities`
 --
@@ -431,7 +433,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT de la tabla `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `requirements`
 --
@@ -456,7 +458,7 @@ ALTER TABLE `subject_priority`
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `users`
 --

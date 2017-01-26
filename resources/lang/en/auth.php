@@ -3,47 +3,47 @@
 return [
 
 	// ACTIVATION ITEMS
-	'sentEmail'			=> 'We have sent an email to :email.',
-	'clickInEmail'		=> 'Please click the link in it to activate your account.',
-	'anEmailWasSent'	=> 'An email was sent to :email on :date.',
-	'clickHereResend'	=> 'Click here to resend the email.',
-	'successActivated'	=> 'Success, your account has been activated.',
+	'sentEmail'			=> 'Hemos enviado un correo a :email.',
+	'clickInEmail'		=> 'Haga click para activar su cuenta.',
+	'anEmailWasSent'	=> 'Se envió un correo a :email el :date.',
+	'clickHereResend'	=> 'Click aquí para reenviar el correo.',
+	'successActivated'	=> 'Su cuenta ha sido activada éxitosamente.',
 	'unsuccessful'		=> 'Your account could not be activated; please try again.',
 	'notCreated'		=> 'Your account could not be created; please try again.',
 	'tooManyEmails'		=> 'Too many activation emails have been sent to :email.',
 
 	// LABELS
 	'whoops'			=> 'Whoops!',
-	'someProblems'		=> 'Errors',
-	'email'				=> 'E-Mail Address',
-	'password'			=> 'Password',
-	'rememberMe'		=> ' Remember Me',
-	'login'				=> 'Login',
-	'forgot'			=> 'Forgot Your Password?',
-	'forgot_message'	=> 'Password Troubles?',
-	'name'				=> 'Username',
-	'first_name'		=> 'First Name',
-	'last_name'			=> 'Last Name',
-	'confirmPassword'	=> 'Confirm Password',
-	'register'			=> 'Register',
+	'someProblems'		=> 'Error',
+	'email'				=> 'Correo Electrónico',
+	'password'			=> 'Contraseña',
+	'rememberMe'		=> 'Recuérdame',
+	'login'				=> 'Entrar',
+	'forgot'			=> '¿Olvido su contraseña?',
+	'forgot_message'	=> '¿Problemas con su contraseña?',
+	'name'				=> 'Nombre de usuario',
+	'first_name'		=> 'Nombre',
+	'last_name'			=> 'Apellido',
+	'confirmPassword'	=> 'Confirmar contraseña',
+	'register'			=> 'Registrarse',
 
 	// PLACEHOLDERS
-	'ph_name'			=> 'Username',
-	'ph_email'			=> 'E-mail Address',
-	'ph_firstname'		=> 'First Name',
-	'ph_lastname'		=> 'Last Name',
-	'ph_password'		=> 'Password',
-	'ph_password_conf'	=> 'Confirm Password',
+	'ph_name'			=> 'Nombre de usuario',
+	'ph_email'			=> 'Correo Electrónico',
+	'ph_firstname'		=> 'Nombre',
+	'ph_lastname'		=> 'Apellido',
+	'ph_password'		=> 'Contraseña',
+	'ph_password_conf'	=> 'Confirmar contraseña',
 
 	// USER FLASH MESSAGES
-	'sendResetLink'		=> 'Send Password Reset Link',
-	'resetPassword'		=> 'Reset Password',
-	'loggedIn'			=> 'Welcome :name',
+	'sendResetLink'		=> 'Reiniciar contraseña',
+	'resetPassword'		=> 'Reiniciar contraseña',
+	'loggedIn'			=> 'Bienvenido :name',
 
 	// EMAIL LINKS
-	'pleaseActivate'	=> 'Please activate your account.',
-	'clickHereReset'	=> 'Click here to reset your password: ',
-	'clickHereActivate'	=> 'Click here to activate your account: ',
+	'pleaseActivate'	=> 'Por favor active su cuenta.',
+	'clickHereReset'	=> 'Haga click aquí para reiniciar su contraseña: ',
+	'clickHereActivate'	=> 'Haga click aquí para activar su cuenta: ',
 
 ];
 

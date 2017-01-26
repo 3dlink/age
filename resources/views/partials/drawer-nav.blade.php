@@ -2,7 +2,7 @@
 	<a href="{{ url('/') }}" class="dashboard-logo mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--primary mdl-color-text--white">
 		<!-- Laravel
 			<i class="material-icons " role="presentation">whatshot</i>
-			Material --> THC System
+			Material --> {{ Lang::get('titles.app') }}
 		</a>
 		<header class="demo-drawer-header">
 			{{--
@@ -31,17 +31,17 @@
 			@if (!Auth::guest() && Auth::user()->hasRole('super administrador') || Auth::user()->hasRole('supervisor') || Auth::user()->hasRole('analista'))
 			<a class="mdl-navigation__link" href="{{ route('assignments') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">assignment_ind</i>
-				Analyst Assignment
+				Asignación de Analistas
 			</a>
 
 			<a class="mdl-navigation__link" href="{{ url('/task') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">list</i>
-				Tasks List
+				Actividades
 			</a>
 			@endif
 			<a class="mdl-navigation__link" href="{{ url('/requirement') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">receipt</i>
-				Requirements List
+				Requerimientos
 			</a>
 			@if (!Auth::guest() && Auth::user()->hasRole('super administrador'))
 
@@ -52,7 +52,7 @@
 
 			<a class="mdl-navigation__link" href="{{ url('/subject') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">subject</i>
-				Subjects List
+				Asuntos
 			</a>
 
 <!-- 			<a class="mdl-navigation__link" href="{{ url('/users/create') }}">
@@ -64,29 +64,17 @@
 
 			<a class="mdl-navigation__link" href="{{ url('/report') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">description</i>
-				Reports List
+				Reportes
 			</a>
 
 			@if (!Auth::guest() && \Auth::user()->hasRole('usuario'))
 			<a class="mdl-navigation__link" href="{{ route('analysts') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">contacts</i>
-				Analysts
+				Analistas
 			</a>
 			@endif
 
 			<div class="mdl-layout-spacer"></div>
-			<!-- 		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a> -->
 
 		</nav>
-		{{--
-		// TEMP - FOR REFERENCE ONLY - DELETE BEFORE RELEASE
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">delete</i>Trash</a>
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">report</i>Spam</a>
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">forum</i>Forums</a>
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">flag</i>Updates</a>
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">local_offer</i>Promos</a>
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">shopping_cart</i>Purchases</a>
-		<a class="mdl-navigation__link" href=""><i class="mdl-color-text--cyan-indigo-400 material-icons" role="presentation">people</i>Social</a>
-		--}}
-
 	</div>

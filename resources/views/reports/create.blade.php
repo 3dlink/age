@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Upload New Report
+	Subir Reporte
 @endsection
 
 @section('template_fastload_css')
@@ -25,7 +25,7 @@ dialog + .backdrop {
 @endsection
 
 @section('header')
-	Upload New Report
+	Subir Reporte
 @endsection
 
 @section('content')
@@ -43,7 +43,7 @@ dialog + .backdrop {
 	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ url('/report') }}">
 			<span itemprop="name">
-				Report List
+				Reportes
 			</span>
 		</a>
 		<i class="material-icons">chevron_right</i>
@@ -52,7 +52,7 @@ dialog + .backdrop {
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="{{ route('report.create') }}">
 			<span itemprop="name">
-				Upload New Report
+				Subir Reporte
 			</span>
 		</a>
 		<meta itemprop="position" content="3" />
@@ -64,7 +64,7 @@ dialog + .backdrop {
 	    <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
 			<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-				<h2 class="mdl-card__title-text">Create New Report</h2>
+				<h2 class="mdl-card__title-text">Subir Reporte</h2>
 			</div>
 
 			{!! Form::open(array('action' => 'ReportController@store', 'method' => 'POST', 'role' => 'form', 'files' => 'true')) !!}
@@ -78,7 +78,7 @@ dialog + .backdrop {
 								<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
 										{!! Form::text('name', NULL, array('id' => 'name', 'class' => 'mdl-textfield__input')) !!}
-										{!! Form::label('name', 'Name', array('class' => 'mdl-textfield__label')); !!}
+										{!! Form::label('name', 'Nombre', array('class' => 'mdl-textfield__label')); !!}
 										<!-- <span class="mdl-textfield__error">Letters and numbers only</span> -->
 									</div>
 								</div>
@@ -89,8 +89,8 @@ dialog + .backdrop {
 									    <label for="client">
 									        <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
 									    </label>
-										{!! Form::label('client', 'Select Client', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
-										<span class="mdl-textfield__error">Select client</span>
+										{!! Form::label('client', 'Seleccion un Cliente', array('class' => 'mdl-textfield__label mdl-selectfield__label')); !!}
+										<span class="mdl-textfield__error"></span>
 									</div>
 								</div>
 
@@ -98,7 +98,7 @@ dialog + .backdrop {
 									<div class="file_upload_container">
 									    <div id="file_upload_text_div" class="mdl-textfield mdl-js-textfield">
 											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" accept=".doc, .docx, .pdf"/>
-											<label class="mdl-textfield__label profile_pic_label" for="file_upload_text">Report file</label>
+											<label class="mdl-textfield__label profile_pic_label" for="file_upload_text">Archivo de Reporte</label>
 									    </div>
 									    <div class="file_upload_btn">
 									     	<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white">
@@ -113,7 +113,7 @@ dialog + .backdrop {
 								<div class="mdl-cell mdl-cell--12-col">
 								    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('description') ? 'is-invalid' :'' }}">
 								        {!! Form::textarea('description',  NULL, array('id' => 'description', 'class' => 'mdl-textfield__input')) !!}
-								        {!! Form::label('description', 'Description', array('class' => 'mdl-textfield__label')); !!}
+								        {!! Form::label('description', 'Descripción', array('class' => 'mdl-textfield__label')); !!}
 								    </div>
 								</div>
 							</div>
@@ -127,7 +127,7 @@ dialog + .backdrop {
 
 							{{-- SAVE BUTTON--}}
 							<span class="save-actions">
-								{!! Form::button('<i class="material-icons">save</i> Save New Report', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
+								{!! Form::button('<i class="material-icons">save</i> Guardar Reporte', array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--green mdl-color-text--white mdl-button--raised margin-bottom-1 margin-top-1 margin-top-0-desktop margin-right-1 padding-left-1 padding-right-1 ')) !!}
 							</span>
 
 						</div>
@@ -138,7 +138,7 @@ dialog + .backdrop {
 
 					{{-- SAVE ICON --}}
 					<span class="save-actions">
-						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Save New Report')) !!}
+						{!! Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-button-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'Guardar Reporte')) !!}
 					</span>
 			    </div>
 

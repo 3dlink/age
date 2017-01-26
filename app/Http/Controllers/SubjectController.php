@@ -42,6 +42,11 @@ class SubjectController extends Controller
             'Alta'                  => 'required_without_all:Baja,Media',
             'Media'                 => 'required_without:Baja',
             'Baja'                  => ''
+        ],[
+            'subject.required'              => 'Ingrese un nombre para el Asunto',
+            'Urgente.required_without_all'  => 'Debe seleccionar una prioridad',
+            'Alta.required_without_all'     => 'Debe seleccionar una prioridad',
+            'Media.required_without'        => 'Debe seleccionar una prioridad'
         ]);
     }
 
@@ -88,7 +93,7 @@ class SubjectController extends Controller
             $subject->priorities()->attach($priorityArray);
 
             // THE SUCCESSFUL RETURN
-            return redirect('subject')->with('status', 'Successfully created subject!');
+            return redirect('subject')->with('status', 'Asunto creado éxitosamente!');
         }
     }
 
@@ -153,7 +158,7 @@ class SubjectController extends Controller
             $subject->priorities()->attach($priorityArray);
 
             // THE SUCCESSFUL RETURN
-            return redirect('subject')->with('status', 'Successfully created subject!');
+            return redirect('subject')->with('status', 'Asunto actualizado éxitosamente');
         }
     }
 
@@ -169,6 +174,6 @@ class SubjectController extends Controller
         $subject->priorities()->detach();
         $subject->delete();
 
-        return redirect('subject')->with('status', 'Successfully deleted the subject!');
+        return redirect('subject')->with('status', 'Asunto eliminado éxitosamente!');
     }
 }

@@ -29,7 +29,7 @@
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="#" disabled>
 			<span itemprop="name">
-				Home
+				Inicio
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />

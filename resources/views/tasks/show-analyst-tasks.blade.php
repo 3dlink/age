@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Tasks
+Actividades
 @endsection
 
 @section('template_linked_css')
@@ -26,7 +26,7 @@ border: solid !important;
 @endsection
 
 @section('header')
-Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
+Motrando las Actividades de {{$user->first_name.' '.$user->last_name}}
 @endsection
 
 @section('breadcrumbs')
@@ -42,7 +42,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ route('analysts') }}">
 		<span itemprop="name">
-			Analysts
+			Analistas
 		</span>
 	</a>
 	<i class="material-icons">chevron_right</i>
@@ -51,7 +51,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ route('task.index') }}" disabled>
 		<span itemprop="name">
-			Tasks List
+			Actividades
 		</span>
 	</a>
 	<meta itemprop="position" content="2" />
@@ -64,7 +64,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 	<div class="mdl-cell mdl-cell--12-col">
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('paginator') ? 'is-invalid' :'' }}">
 			{!! Form::text('paginator', NULL, array('id' => 'paginator', 'class' => 'mdl-textfield__input')) !!}
-			{!! Form::label('paginator', 'Week start day', array('class' => 'mdl-textfield__label')); !!}
+			{!! Form::label('paginator', 'Elija la semana que desea ver', array('class' => 'mdl-textfield__label')); !!}
 		</div>
 	</div>
 </div>
@@ -73,11 +73,11 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style mdl-cell--4-col">
 			@if ($tasksN->count() === 1)
-			{{ $tasksN->count() }} Task in regular hours
+			{{ $tasksN->count() }} Actividad en horario regular
 			@elseif ($tasksN->count() > 1)
-			{{ $tasksN->count() }} Tasks in regular hours
+			{{ $tasksN->count() }} Actividades en horario regular
 			@else
-			No Tasks :(
+			Sin Actividades :(
 			@endif
 		</h2>
 
@@ -88,14 +88,14 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Analyst</th>
-						<th class="mdl-data-table__cell--non-numeric">Client</th>
-						<th class="mdl-data-table__cell--non-numeric">Date</th>
-						<th class="mdl-data-table__cell--non-numeric">Start hour</th>
-						<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
+						<th class="mdl-data-table__cell--non-numeric">Analista</th>
+						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+						<th class="mdl-data-table__cell--non-numeric">Fecha</th>
+						<th class="mdl-data-table__cell--non-numeric">Hona de Inicio</th>
+						<th class="mdl-data-table__cell--non-numeric">Duración</th>
 						<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
-						<th class="mdl-data-table__cell--non-numeric">Type</th>
-						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+						<th class="mdl-data-table__cell--non-numeric">Tipo</th>
+						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -117,7 +117,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 
 						<td class="mdl-data-table__cell--non-numeric">
 							{{-- SHOW TASK ICON BUTTON --}}
-							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 								<i class="material-icons">visibility</i>
 							</a>
 						</td>
@@ -136,9 +136,9 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 				<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 				<label class="mdl-textfield__label" for="search_table">
-					Search Terms
+					Buscar
 				</label>
 			</div>
 		</div>
@@ -149,11 +149,11 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 	<div class="mdl-card__title mdl-color--red mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style mdl-cell--4-col">
 			@if ($tasksE->count() === 1)
-			{{ $tasksE->count() }} Task in extra hours
+			{{ $tasksE->count() }} Actividad en horas extra
 			@elseif ($tasksE->count() > 1)
-			{{ $tasksE->count() }} Tasks in extra hours
+			{{ $tasksE->count() }} Actividades en horas extra
 			@else
-			No Tasks :(
+			Sin Actividades :(
 			@endif
 		</h2>
 		<span class="mdl-cell--2-col">Total: {{$cantE}}</span>
@@ -163,14 +163,14 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Analyst</th>
-						<th class="mdl-data-table__cell--non-numeric">Client</th>
-						<th class="mdl-data-table__cell--non-numeric">Date</th>
-						<th class="mdl-data-table__cell--non-numeric">Start hour</th>
-						<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
+						<th class="mdl-data-table__cell--non-numeric">Analista</th>
+						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+						<th class="mdl-data-table__cell--non-numeric">Fecha</th>
+						<th class="mdl-data-table__cell--non-numeric">Hora de inicio</th>
+						<th class="mdl-data-table__cell--non-numeric">Duración</th>
 						<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
-						<th class="mdl-data-table__cell--non-numeric">Type</th>
-						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+						<th class="mdl-data-table__cell--non-numeric">Tipo</th>
+						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -191,7 +191,7 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 						</td>
 						<td class="mdl-data-table__cell--non-numeric">
 							{{-- SHOW TASK ICON BUTTON --}}
-							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 								<i class="material-icons">visibility</i>
 							</a>
 						</td>
@@ -210,9 +210,9 @@ Showing {{$user->first_name.' '.$user->last_name}}'s Tasks
 				<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 				<label class="mdl-textfield__label" for="search_table">
-					Search Terms
+					Buscar
 				</label>
 			</div>
 		</div>

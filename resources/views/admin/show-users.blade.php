@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-	Show Users
+	Usuarios
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ dialog + .backdrop {
 @endsection
 
 @section('header')
-	Showing All Users
+	Viendo Todos los Usuarios
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ dialog + .backdrop {
 	<li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 		<a itemprop="item" href="/users" disabled>
 			<span itemprop="name">
-				Users List
+				Usuarios
 			</span>
 		</a>
 		<meta itemprop="position" content="2" />
@@ -49,11 +49,11 @@ dialog + .backdrop {
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_users === 1)
-			    {{ $total_users }} User total
+			    {{ $total_users }} Usuario
 			@elseif ($total_users > 1)
-			    {{ $total_users }} Total Users
+			    {{ $total_users }} Usuarios en Total
 			@else
-			    No Users :(
+			    Sin Usuarios :(
 			@endif
 		</h2>
 	</div>
@@ -62,10 +62,10 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
-					<th class="mdl-data-table__cell--non-numeric">Name</th>
-					<th class="mdl-data-table__cell--non-numeric">Email</th>
-					<th class="mdl-data-table__cell--non-numeric">Access Level</th>
-					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+					<th class="mdl-data-table__cell--non-numeric">Nombre de Usuario</th>
+					<th class="mdl-data-table__cell--non-numeric">Correo Electrónico</th>
+					<th class="mdl-data-table__cell--non-numeric">Nivel de Acceso</th>
+					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -76,13 +76,13 @@ dialog + .backdrop {
 							<td class="mdl-data-table__cell--non-numeric">
 										@if ($a_user->role->id == 4 )
 											@php
-									            $access_level   = 'User';
+									            $access_level   = 'Cliente';
 									            $access_class 	= 'mdl-color--green-200 mdl-color-text--white';
 									            $access_icon	= 'lock';
 											@endphp
 										@elseif ($a_user->role->id == 3 )
 											@php
-									            $access_level   = 'Analyst';
+									            $access_level   = 'Analista';
 									            $access_class 	= 'mdl-color--green-400 mdl-color-text--white';
 									            $access_icon	= 'lock_outline';
 											@endphp
@@ -94,7 +94,7 @@ dialog + .backdrop {
 											@endphp
 										@elseif ($a_user->role->id == 1 )
 											@php
-									            $access_level   = 'Administrator';
+									            $access_level   = 'Administrador';
 									            $access_class 	= 'mdl-color--green-600 mdl-color-text--white';
 									            $access_icon	= 'verified_user';
 											@endphp
@@ -112,7 +112,7 @@ dialog + .backdrop {
 							@if($user->hasRole('usuario'))
 							@if($a_user->hasRole('analista') || $a_user->hasRole('supervisor'))
 								{{-- VIEW TASK ICON BUTTON --}}
-								<a href="{{ route('analyst.tasks', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View Analyst Tasks">
+								<a href="{{ route('analyst.tasks', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver actividades">
 									<i class="material-icons">list</i>
 								</a>
 							@endif
@@ -120,25 +120,25 @@ dialog + .backdrop {
 							@if(!$user->hasRole('usuario'))
 
 								{{-- VIEW USER PROFILE ICON BUTTON --}}
-								<a href="{{ route('profile.show', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Profile">
+								<a href="{{ route('profile.show', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver perfil">
 									<i class="material-icons">person_outline</i>
 								</a>
 
 
 								{{-- VIEW USER ACCOUNT ICON BUTTON --}}
-								<a href="{{ URL::to('users/' . $a_user->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Account">
+								<a href="{{ URL::to('users/' . $a_user->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver cuenta">
 									<i class="material-icons">account_circle</i>
 								</a>
 
 								{{-- EDIT USER ICON BUTTON --}}
-								<a href="{{ URL::to('users/' . $a_user->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+								<a href="{{ URL::to('users/' . $a_user->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Editar">
 									<i class="material-icons">edit</i>
 								</a>
 
 								{{-- DELETE ICON BUTTON AND FORM CALL --}}
 								{!! Form::open(array('url' => 'users/' . $a_user->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_user->id)) !!}
 									{!! Form::hidden('_method', 'DELETE') !!}
-									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_user->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_user->id}}">
+									<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_user->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_user->id}}" title="Eliminar">
 										<i class="material-icons">delete_forever</i>
 									</a>
 								{!! Form::close() !!}
@@ -151,7 +151,7 @@ dialog + .backdrop {
 		</div>
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('/users/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+		<a href="{{ url('/users/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Crear Usuario">
 			<i class="material-icons">person_add</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
@@ -159,9 +159,9 @@ dialog + .backdrop {
 			  	<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+			  	<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 			  	<label class="mdl-textfield__label" for="search_table">
-			  		Search Terms
+			  		Buscar
 			  	</label>
 			</div>
 		</div>

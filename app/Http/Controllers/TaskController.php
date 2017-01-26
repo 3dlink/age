@@ -49,29 +49,43 @@ class TaskController extends Controller
     }
 
     public function validator(array $data){
-        $clients = User::find($data['admin'])->clients;
-        $clientsString = ':';
-        $i = 1;
-        foreach ($clients as $key) {
+        $clientsString = ':0';
+        if (!empty($data['admin'])) {
+         $clients = User::find($data['admin'])->clients;
+         $clientsString = ':';
+         $i = 1;
+         foreach ($clients as $key) {
             $clientsString .= $key->id;
             if ($i != $clients->count()) {
                 $clientsString .= ',';
             }
             $i++;
         }
-
-        return Validator::make($data, [
-            'date'              => 'required|date_format:Y-m-d',
-            'start_hour'        => 'required|date_format:H:i',
-            'hours'             => 'required',
-            'description'       => 'required',
-            'type'              => 'required',
-            'admin'             => 'required|integer|exists:users,id',
-            'client'            => 'required|in'.$clientsString
-            ], [
-            'client.in'         => 'The selected client is not assigned to the selected analyst'
-            ]);
     }
+
+
+    return Validator::make($data, [
+        'date'              => 'required|date_format:Y-m-d',
+        'start_hour'        => 'required|date_format:H:i',
+        'hours'             => 'required',
+        'description'       => 'required',
+        'type'              => 'required',
+        'admin'             => 'required|integer|exists:users,id',
+        'client'            => 'required|in'.$clientsString
+        ], [
+        'client.in'                 => 'El Cliente seleccionado no esta asignado al Analista seleccionado',
+        'date.required'             => 'Ingrese una fecha',
+        'date.date_format'          => 'El formato de la fecha no es correcto',
+        'start_hour.required'       => 'Ingrese una hora de inicio',
+        'start_hour.date_format'    => 'El formato de la hora no es correcto',
+        'hours.required'            => 'Ingrese una duración',
+        'description.required'      => 'Ingrese una descripción',
+        'type.required'             => 'Ingrese un tipo de actividad',
+        'admin.required'            => 'Seleccione un Analista',
+        'admin.exists'              => 'El Analista seleccionado no existe',
+        'client.required'           => 'Seleccione un Cliente'
+        ]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -135,7 +149,7 @@ class TaskController extends Controller
             $user->tasks()->save($task);
 
             // THE SUCCESSFUL RETURN
-            return redirect('task')->with('status', 'Successfully created task!');
+            return redirect('task')->with('status', 'Actividad creada éxitosamente!');
         }
     }
 
@@ -151,7 +165,7 @@ class TaskController extends Controller
 
         return view('tasks.view', [
             'task'      => $task
-        ]);
+            ]);
     }
 
     /**
@@ -219,7 +233,7 @@ class TaskController extends Controller
             $user->tasks()->save($task);
 
             // THE SUCCESSFUL RETURN
-            return redirect('task')->with('status', 'Successfully updated the task!');
+            return redirect('task')->with('status', 'Actividad actualizada éxitosamente!');
         }
     }
 
@@ -235,7 +249,7 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
 
-        return redirect('task')->with('status', 'Successfully deleted the task!');
+        return redirect('task')->with('status', 'Actividad eliminada éxitosamente!');
     }
 
     public function transformHours($hours)
@@ -308,7 +322,7 @@ class TaskController extends Controller
             ]
             )->setPaper('a4', 'landscape');
 
-        return $pdf->download($analyst->last_name.'_'.$analyst->first_name.'_horas_semana_'.$week.'_año_    '.$year.'.pdf');
+        return $pdf->download($analyst->last_name.'_'.$analyst->first_name.'_actividades_semana_'.$week.'_año_    '.$year.'.pdf');
     }
 
     public function getAnalystTasks($username, $year, $week)
@@ -372,7 +386,7 @@ class TaskController extends Controller
             'total_hours'       => $normal_hours + $extra_hours,
             'week'              => $week,
             'year'              => $year
-        ]);
+            ]);
     }
 
     public function getAssignedAnalystsView()
@@ -398,6 +412,6 @@ class TaskController extends Controller
             'task'      => $task,
             'year'      => $year,
             'week'      => $week
-        ]);        
+            ]);        
     }
 }

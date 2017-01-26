@@ -27,7 +27,7 @@ Actividad
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ url('/task') }}">
 		<span itemprop="name">
-			Listado de Actividades
+			Actividades
 		</span>
 	</a>
 	<i class="material-icons">chevron_right</i>
@@ -79,7 +79,7 @@ Actividad
 								</div>
 
 								<div class="mdl-cell mdl-cell--12-col">
-									<label class="mdl-color-text--indigo">Duracion: </label>
+									<label class="mdl-color-text--indigo">Duración: </label>
 									{{$task->cant_horas/60}}
 								</div>
 

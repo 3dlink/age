@@ -12,71 +12,51 @@ return [
     */
 
 	// CREATE NEW USER FORM
-	'create_user_label_email'			=> 'User Email',
-	'create_user_ph_email'				=> 'User Email',
+	'create_user_label_email'			=> 'Correo electrónico',
+	'create_user_ph_email'				=> 'Correo electrónico',
 	'create_user_icon_email'			=> 'fa-envelope',
 
-	'create_user_label_username'		=> 'Username',
-	'create_user_ph_username'			=> 'Username',
+	'create_user_label_username'		=> 'Nombre de usuario',
+	'create_user_ph_username'			=> 'Nombre de usuario',
 	'create_user_icon_username'			=> 'fa-user',
 
-	'create_user_label_firstname'		=> 'First Name',
-	'create_user_ph_firstname'			=> 'First Name',
+	'create_user_label_firstname'		=> 'Nombre',
+	'create_user_ph_firstname'			=> 'Nombre',
 	'create_user_icon_firstname'		=> 'fa-user',
 
-	'create_user_label_lastname'		=> 'Last Name',
-	'create_user_ph_lastname'			=> 'Last Name',
+	'create_user_label_lastname'		=> 'Apellido',
+	'create_user_ph_lastname'			=> 'Apellido',
 	'create_user_icon_lastname'			=> 'fa-user',
 
-	'create_user_label_password'		=> 'Password',
-	'create_user_ph_password'			=> 'Password',
+	'create_user_label_password'		=> 'Contraseña',
+	'create_user_ph_password'			=> 'Contraseña',
 	'create_user_icon_password'			=> 'fa-lock',
 
-	'create_user_label_pw_confirmation'	=> 'Confirm Password',
-	'create_user_ph_pw_confirmation'	=> 'Confirm Password',
+	'create_user_label_pw_confirmation'	=> 'Confirmar Contraseña',
+	'create_user_ph_pw_confirmation'	=> 'Confirmar Contraseña',
 	'create_user_icon_pw_confirmation'	=> 'fa-lock',
 
-	'create_user_label_location'		=> 'User Location',
-	'create_user_ph_location'			=> 'User Location',
-	'create_user_icon_location'			=> 'fa-map-marker',
-
-	'create_user_label_bio'				=> 'User Bio',
-	'create_user_ph_bio'				=> 'User Bio',
+	'create_user_label_bio'				=> 'Biografía',
+	'create_user_ph_bio'				=> 'Biografía',
 	'create_user_icon_bio'				=> 'fa-pencil',
 
-	'create_user_label_twitter_username'=> 'User Twitter Username',
-	'create_user_ph_twitter_username'	=> 'User Twitter Username',
-	'create_user_icon_twitter_username'	=> 'fa-twitter',
-
-	'create_user_label_github_username'	=> 'User GitHub Username',
-	'create_user_ph_github_username'	=> 'User GitHub Username',
-	'create_user_icon_github_username'	=> 'fa-github',
-
-	'create_user_label_career_title'	=> 'User Occupation',
-	'create_user_ph_career_title'		=> 'User Occupation',
-	'create_user_icon_career_title'		=> 'fa-briefcase',
-
-	'create_user_label_education'		=> 'User Education',
-	'create_user_ph_education'			=> 'User Education',
-	'create_user_icon_education'		=> 'fa-graduation-cap',
-
-	'create_user_button_text'			=> 'Create New User',
+	'create_user_button_text'			=> 'Crear Nuevo Usuario',
 
 	// EDIT USER AS ADMINISTRATOR FORM
-	'edit-user-admin-title'				=>'Edit User Information',
+	'edit-user-admin-title'				=>'Editar Información de Usuario',
 
-	'label-username'					=> 'Username',
-	'ph-username'						=> 'Username',
+	'label-username'					=> 'Nombre de usuario',
+	'ph-username'						=> 'Nombre de usuario',
 
-	'label-useremail'					=> 'User Email',
-	'ph-useremail'						=> 'User Email',
+	'label-useremail'					=> 'Correo electrónico',
+	'ph-useremail'						=> 'Correo electrónico',
 
-	'label-userrole_id'					=> 'User Access Level',
-	'option-label'						=>	'Select a Level',
+	'label-userrole_id'					=> 'Nivel de acceso',
+	'option-label'						=>	'Seleccione un rol',
 	'option-user'						=>	'User',
 	'option-editor'						=>	'Editor',
 	'option-admin'						=>	'Administrator',
-	'submit-btn-text'					=>	' Edit the User!',
+	'submit-btn-text'					=>	'Guardar cambios',
 
 	'submit-btn-icon'					=>	'fa-save',
 	'username-icon'						=>	'fa-user',

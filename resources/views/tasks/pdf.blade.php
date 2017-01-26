@@ -8,11 +8,11 @@
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style mdl-cell--4-col">
 			@if ($tasksN->count() === 1)
-			{{ $tasksN->count() }} Task in regular hours
+			{{ $tasksN->count() }} Actividad en horario regular
 			@elseif ($tasksN->count() > 1)
-			{{ $tasksN->count() }} Tasks in regular hours
+			{{ $tasksN->count() }} Actividades en horario regular
 			@else
-			No Tasks :(
+			Sin Actividades :(
 			@endif
 		</h2>
 
@@ -23,13 +23,13 @@
 			<table id="user_table" class="" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Analyst</th>
-						<th class="mdl-data-table__cell--non-numeric">Client</th>
+						<th class="mdl-data-table__cell--non-numeric">Analista</th>
+						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
 						<th class="mdl-data-table__cell--non-numeric">Date</th>
-						<th class="mdl-data-table__cell--non-numeric">Start hour</th>
-						<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
-						<th class="mdl-data-table__cell--non-numeric">Description</th>
-						<th class="mdl-data-table__cell--non-numeric">Type</th>
+						<th class="mdl-data-table__cell--non-numeric">Hora de inicio</th>
+						<th class="mdl-data-table__cell--non-numeric">Duración</th>
+						<th class="mdl-data-table__cell--non-numeric">Descripción</th>
+						<th class="mdl-data-table__cell--non-numeric">Tipo</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -61,11 +61,11 @@
 	<div class="mdl-card__title mdl-color--red mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style mdl-cell--4-col">
 			@if ($tasksE->count() === 1)
-			{{ $tasksE->count() }} Task in extra hours
+			{{ $tasksE->count() }} Actividad en horas extra
 			@elseif ($tasksE->count() > 1)
-			{{ $tasksE->count() }} Tasks in extra hours
+			{{ $tasksE->count() }} Actividades en horas extra
 			@else
-			No Tasks :(
+			Sin Actividades :(
 			@endif
 		</h2>
 		<span class="mdl-cell--2-col">Total: {{$cantE}}</span>
@@ -75,13 +75,13 @@
 			<table id="user_table" class="" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Analyst</th>
-						<th class="mdl-data-table__cell--non-numeric">Client</th>
-						<th class="mdl-data-table__cell--non-numeric">Date</th>
-						<th class="mdl-data-table__cell--non-numeric">Start hour</th>
-						<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
-						<th class="mdl-data-table__cell--non-numeric">Description</th>
-						<th class="mdl-data-table__cell--non-numeric">Type</th>
+						<th class="mdl-data-table__cell--non-numeric">Analista</th>
+						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+						<th class="mdl-data-table__cell--non-numeric">Fecha</th>
+						<th class="mdl-data-table__cell--non-numeric">Hora de inicio</th>
+						<th class="mdl-data-table__cell--non-numeric">Duración</th>
+						<th class="mdl-data-table__cell--non-numeric">Descripción</th>
+						<th class="mdl-data-table__cell--non-numeric">Tipo</th>
 					</tr>
 				</thead>
 				<tbody>

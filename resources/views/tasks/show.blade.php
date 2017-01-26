@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('template_title')
-Tasks
+Actividades
 @endsection
 
 @section('template_linked_css')
@@ -20,7 +20,7 @@ background: rgba(0,0,0,0.8);
 @endsection
 
 @section('header')
-Showing All Tasks
+Mostrando Todas las Actividades
 @endsection
 
 @section('breadcrumbs')
@@ -36,7 +36,7 @@ Showing All Tasks
 <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 	<a itemprop="item" href="{{ route('task.index') }}" disabled>
 		<span itemprop="name">
-			Tasks List
+			Actividades
 		</span>
 	</a>
 	<meta itemprop="position" content="2" />
@@ -49,11 +49,11 @@ Showing All Tasks
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_tasks === 1)
-			{{ $total_tasks }} Task total
+			{{ $total_tasks }} Actividad en Total
 			@elseif ($total_tasks > 1)
-			{{ $total_tasks }} Total Tasks
+			{{ $total_tasks }} Actividades en Total
 			@else
-			No Tasks :(
+			Sin Actividades :(
 			@endif
 		</h2>
 	</div>
@@ -62,15 +62,15 @@ Showing All Tasks
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 				<thead>
 					<tr>
-						<th class="mdl-data-table__cell--non-numeric">Analyst</th>
-						<th class="mdl-data-table__cell--non-numeric">Client</th>
-						<th class="mdl-data-table__cell--non-numeric">Date</th>
-						<th class="mdl-data-table__cell--non-numeric">Start hour</th>
-						<th class="mdl-data-table__cell--non-numeric">Number of hours</th>
+						<th class="mdl-data-table__cell--non-numeric">Analista</th>
+						<th class="mdl-data-table__cell--non-numeric">Cliente</th>
+						<th class="mdl-data-table__cell--non-numeric">Fecha</th>
+						<th class="mdl-data-table__cell--non-numeric">Hora de Inicio</th>
+						<th class="mdl-data-table__cell--non-numeric">Duración</th>
 						<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
-						<th class="mdl-data-table__cell--non-numeric">Type</th>
+						<th class="mdl-data-table__cell--non-numeric">Tipo</th>
 						@if(!\Auth::user()->hasRole('usuario'))
-						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+						<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 						@endif
 					</tr>
 				</thead>
@@ -94,19 +94,19 @@ Showing All Tasks
 						<td class="mdl-data-table__cell--non-numeric">
 
 							{{-- SHOW TASK ICON BUTTON --}}
-							<a href="{{ route('task.show', $a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View detail">
+							<a href="{{ route('task.show', $a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 								<i class="material-icons">visibility</i>
 							</a>
 
 							{{-- EDIT TASK ICON BUTTON --}}
-							<a href="{{ URL::to('task/' . $a_task->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+							<a href="{{ URL::to('task/' . $a_task->id . '/edit') }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Editar Actividad">
 								<i class="material-icons">edit</i>
 							</a>
 
 							{{-- DELETE ICON BUTTON AND FORM CALL --}}
 							{!! Form::open(array('url' => 'task/' . $a_task->id, 'class' => 'inline-block', 'id' => 'delete_'.$a_task->id)) !!}
 							{!! Form::hidden('_method', 'DELETE') !!}
-							<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_task->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_task->id}}">
+							<a href="#" class="dialog-button dialog-trigger-delete dialog-trigger{{$a_task->id}} mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="{{$a_task->id}}" title="Eliminar Actividad">
 								<i class="material-icons">delete_forever</i>
 							</a>
 							{!! Form::close() !!}
@@ -119,7 +119,7 @@ Showing All Tasks
 		</div>
 	</div>
 	<div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('/task/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block">
+		<a href="{{ url('/task/create') }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Crear Actividad">
 			<i class="material-icons">add</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
@@ -127,9 +127,9 @@ Showing All Tasks
 				<i class="material-icons">search</i>
 			</label>
 			<div class="mdl-textfield__expandable-holder">
-				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Search Terms">
+				<input class="mdl-textfield__input" type="search" id="search_table" placeholder="Buscar">
 				<label class="mdl-textfield__label" for="search_table">
-					Search Terms
+					Buscar
 				</label>
 			</div>
 		</div>
