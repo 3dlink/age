@@ -69,6 +69,11 @@ Reporte
 								</div>
 
 								<div class="mdl-cell mdl-cell--12-col">
+									<label class="mdl-color-text--indigo">Nombre del Reporte: </label>
+									{{$report->name}}
+								</div>
+
+								<div class="mdl-cell mdl-cell--12-col">
 									<label class="mdl-color-text--indigo">Subido por: </label>
 									{{$report->owner->first_name.' '.$report->owner->last_name}}
 								</div>

@@ -70,6 +70,7 @@ class AuthController extends Controller {
 	{
 		return Validator::make($data, [
 			'name' 								=> 'required|max:255|unique:users',
+			'empresa'							=> 'required|max:255|unique:users',
 			'first_name' 						=> 'required|max:255',
 			'last_name' 						=> 'required|max:255',
 			'email' 							=> 'required|email|max:255|unique:users',
@@ -86,6 +87,8 @@ class AuthController extends Controller {
 			'password.min'						=> 'Su contraseña debe tener al menos 6 carácteres',
 			'password_confirmation.required'	=> 'Confirme su contraseña',
 			'password_confirmation.same'		=> 'Sus contraseñas deben coincidir',
+			'empresa.unique'                    => 'Esta empresa ya existe',
+			'empresa.required'                  => 'Ingrese el nombre de su empresa'
 		]);
 	}
 
@@ -115,6 +118,7 @@ class AuthController extends Controller {
 		$activation_code 			= str_random(60) . $request->input('email');
 		$user 						= new User;
 		$user->name 				= $request->input('name');
+		$user->empresa 				= $request->input('empresa');
 		$user->first_name 			= $request->input('first_name');
 		$user->last_name 			= $request->input('last_name');
 		$user->email 				= $request->input('email');

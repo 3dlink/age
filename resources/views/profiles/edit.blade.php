@@ -107,6 +107,13 @@ float: left;
 						<div class="mdl-grid ">
 
 							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('empresa') ? 'is-invalid' :'' }}">
+									{!! Form::text('empresa', $user->empresa, array('id' => 'empresa', 'class' => 'mdl-textfield__input', 'disabled')) !!}
+									{!! Form::label('empresa', 'Empresa' , array('class' => 'mdl-textfield__label')); !!}
+									<span class="mdl-textfield__error"></span>
+								</div>
+							</div>
+							<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('name') ? 'is-invalid' :'' }}">
 									{!! Form::text('name', $user->name, array('id' => 'name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z,0-9]*', 'disabled')) !!}
 									{!! Form::label('name', Lang::get('auth.name') , array('class' => 'mdl-textfield__label')); !!}
@@ -157,7 +164,7 @@ float: left;
 									</div>
 									<div class="file_upload_btn">
 										<label class="image_input_button mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white">
-											<i class="material-icons">wallpaper</i>
+											<i class="material-icons">add_a_photo</i>
 
 											{!! Form::file('user_profile_pic',  array('id' => 'file_upload_btn', 'class' => 'hidden mdl-file-input', 'accept'=> "image/*" )) !!}
 										</label>

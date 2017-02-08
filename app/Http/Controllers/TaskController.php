@@ -51,10 +51,10 @@ class TaskController extends Controller
     public function validator(array $data){
         $clientsString = ':0';
         if (!empty($data['admin'])) {
-         $clients = User::find($data['admin'])->clients;
-         $clientsString = ':';
-         $i = 1;
-         foreach ($clients as $key) {
+           $clients = User::find($data['admin'])->clients;
+           $clientsString = ':';
+           $i = 1;
+           foreach ($clients as $key) {
             $clientsString .= $key->id;
             if ($i != $clients->count()) {
                 $clientsString .= ',';
@@ -260,20 +260,20 @@ class TaskController extends Controller
         return $horas*60 + $minutos;
     }
 
-    public function getPDF($username, $year, $week)
+    public function getPDF($year, $month)
     {
         $user       = \Auth::user();
-        $analyst    = User::where('name',$username)->get();
-        $analyst    = $analyst[0];
+        $analysts   = $user->analysts;
 
-        $tasks      = Task::where([['client_id', $user->id], ['user_id', $analyst->id]])->get();
+        // $tasks      = Task::where([['client_id', $user->id], ['user_id', $analyst->id]])->get();
 
         $tasksArray = collect();
-
-        foreach ($tasks as $a_task) {
-            $date = $a_task->fecha;
-            if (date("W", strtotime($date)) == $week && date("Y", strtotime($date)) == $year) {
-                $tasksArray->push($a_task);
+        foreach ($analysts as $a_analyst) {
+            foreach ($a_analyst->tasks as $a_task) {
+                $date = $a_task->fecha;
+                if (date("m", strtotime($date)) == $month && date("Y", strtotime($date)) == $year) {
+                    $tasksArray->push($a_task);
+                }
             }
         }
 
@@ -313,7 +313,7 @@ class TaskController extends Controller
         }
 
         $pdf = PDF::loadView('tasks.pdf', [
-            'user'              => $analyst,
+            'user'              => $user,
             'tasksN'            => $normalTasks,
             'tasksE'            => $extraTasks,
             'cantN'             => $normal_hours,
@@ -322,23 +322,23 @@ class TaskController extends Controller
             ]
             )->setPaper('a4', 'landscape');
 
-        return $pdf->download($analyst->last_name.'_'.$analyst->first_name.'_actividades_semana_'.$week.'_año_    '.$year.'.pdf');
+        return $pdf->download('actividades_mes_'.$month.'_año_'.$year.'.pdf');
     }
 
-    public function getAnalystTasks($username, $year, $week)
+    public function getAnalystTasks($year, $month)
     {
         $user       = \Auth::user();
-        $analyst    = User::where('name',$username)->get();
-        $analyst    = $analyst[0];
+        $analysts   = $user->analysts;
 
-        $tasks      = Task::where([['client_id', $user->id], ['user_id', $analyst->id]])->get();
+        // $tasks      = Task::where([['client_id', $user->id], ['user_id', $analyst->id]])->get();
 
         $tasksArray = collect();
-
-        foreach ($tasks as $a_task) {
-            $date = $a_task->fecha;
-            if (date("W", strtotime($date)) == $week && date("Y", strtotime($date)) == $year) {
-                $tasksArray->push($a_task);
+        foreach ($analysts as $a_analyst) {
+            foreach ($a_analyst->tasks as $a_task) {
+                $date = $a_task->fecha;
+                if (date("m", strtotime($date)) == $month && date("Y", strtotime($date)) == $year) {
+                    $tasksArray->push($a_task);
+                }
             }
         }
 
@@ -378,13 +378,13 @@ class TaskController extends Controller
         }
 
         return view('tasks.show-analyst-tasks', [
-            'user'              => $analyst,
+            'user'              => $user,
             'tasksN'            => $normalTasks,
             'tasksE'            => $extraTasks,
             'cantN'             => $normal_hours,
             'cantE'             => $extra_hours,
             'total_hours'       => $normal_hours + $extra_hours,
-            'week'              => $week,
+            'month'              => $month,
             'year'              => $year
             ]);
     }
@@ -404,14 +404,14 @@ class TaskController extends Controller
         return redirect('/');
     }
 
-    public function showAnalyst($year, $week, $id)
+    public function showAnalyst($year, $month, $id)
     {
         $task = Task::find($id);
 
         return view('tasks.view-analyst-task', [
             'task'      => $task,
             'year'      => $year,
-            'week'      => $week
-            ]);        
+            'month'     => $month
+            ]);
     }
 }

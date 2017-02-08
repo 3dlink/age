@@ -50,10 +50,11 @@
 				<h2 class="mdl-card__title-text mdl-title-username mdl-color-text--white text-center">
 					Hi {{ Auth::user()->name }}
 				</h2>
-		  	</div>
-			<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+		  	</div>-->
+<!-- 			<div class="mdl-card__supporting-text mdl-color-text--grey-600">
 				Thank you for checking out this Laravel Material Design Lite project. Please star and/or fork this repository :)
-			</div>
+			</div> -->
+			<!-- 
 		</div> -->
 
 <!-- 		{{--

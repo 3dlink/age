@@ -95,7 +95,7 @@ Actividad
 								<div class="mdl-cell mdl-cell--12-col">
 									<label class="mdl-color-text--indigo">Descripción: </label>
 									<br>
-									{{$task->description}}
+									{{$task->descripcion}}
 								</div>
 							</div>
 						</div>

@@ -117,7 +117,7 @@ Motrando las Actividades de {{$user->first_name.' '.$user->last_name}}
 
 						<td class="mdl-data-table__cell--non-numeric">
 							{{-- SHOW TASK ICON BUTTON --}}
-							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
+							<a href="{{ url('analyst/task/'.$year.'/'.$month.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 								<i class="material-icons">visibility</i>
 							</a>
 						</td>
@@ -128,7 +128,7 @@ Motrando las Actividades de {{$user->first_name.' '.$user->last_name}}
 		</div>
 	</div>
 	<div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('analyst/pdf/'.$user->name.'/'.$year.'/'.$week) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;" title="Descargar Servicio Nominal">
+		<a href="{{ url('analyst/pdf/'.$year.'/'.$month) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;" title="Descargar Servicio Nominal">
 			<i class="material-icons">get_app</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
@@ -191,7 +191,7 @@ Motrando las Actividades de {{$user->first_name.' '.$user->last_name}}
 						</td>
 						<td class="mdl-data-table__cell--non-numeric">
 							{{-- SHOW TASK ICON BUTTON --}}
-							<a href="{{ url('analyst/task/'.$year.'/'.$week.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
+							<a href="{{ url('analyst/task/'.$year.'/'.$month.'/'.$a_task->id) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver detalle">
 								<i class="material-icons">visibility</i>
 							</a>
 						</td>
@@ -202,7 +202,7 @@ Motrando las Actividades de {{$user->first_name.' '.$user->last_name}}
 		</div>
 	</div>
 	<div class="mdl-card__menu" style="top: -5px;">
-		<a href="{{ url('analyst/pdf/'.$user->name.'/'.$year.'/'.$week) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;" title="Descargar Servicio Nominal">
+		<a href="{{ url('analyst/pdf/'.$year.'/'.$month) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" style="vertical-align: middle;" title="Descargar Servicio Nominal">
 			<i class="material-icons">get_app</i>
 		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
@@ -227,26 +227,30 @@ Motrando las Actividades de {{$user->first_name.' '.$user->last_name}}
 @include('scripts.mdl-datatables')
 
 <script type="text/javascript">
+	let url;
+	let dateSet;
 	let paginator = document.getElementById('paginator');
 
-	let initial = moment().isoWeek({{$week}}).day('Monday');
+	let initial = moment().month({{$month}}).date(1);
 
 	let weekpicker = rome(paginator, {
 		time:false,
 		weekStart: 1,
 		initialValue: initial,
 		dateValidator: date => {
-			return moment(date).day() == 1;
+			return moment(date).date() == 1;
 		}
 	});
 	weekpicker.on('data', date => {
-		let url = "{!! url('analyst/'.$user->name) !!}";
+		dateSet = date;
+		url = "{!! url('analyst/') !!}";
 		url += '/';
 		url += moment(date).year();
 		url += '/';
-		url += moment(date).isoWeek();
-
-		if (moment(date).isoWeek() != moment(initial).isoWeek()) {
+		url += moment(date).month();
+	});
+	weekpicker.on('hide', function(){
+		if (moment(dateSet).month() != moment(initial).month()) {
 			window.location.replace(url);
 		}
 	});

@@ -112,17 +112,17 @@ Route::group(['middleware' => 'auth'], function () {
 		'uses'		=> 'TaskController@getAssignedAnalystsView'
 	]);
 
-	Route::get('analyst/{analyst}/{year}/{week}', [
+	Route::get('analyst/{year}/{month}', [
 		'as'		=> 'analyst.tasks',
 		'uses'		=> 'TaskController@getAnalystTasks'
 	]);
 
-	Route::get('analyst/pdf/{analyst}/{year}/{week}', [
+	Route::get('analyst/pdf/{year}/{month}', [
 		'as'		=> 'analyst.pdf',
 		'uses'		=> 'TaskController@getPDF'
 	]);
 
-	Route::get('analyst/task/{year}/{week}/{task}', [
+	Route::get('analyst/task/{year}/{month}/{task}', [
 		'as'		=> 'analyst.task',
 		'uses'		=> 'TaskController@showAnalyst'
 	]);
@@ -137,6 +137,19 @@ Route::group(['middleware' => 'administrator'], function () {
 	Route::get('users', [
 		'as' 			=> '{username}',
 		'uses' 			=> 'UsersManagementController@showUsersMainPanel'
+	]);
+});
+
+Route::group(['middleware' 	=> 	'analyst'], function(){
+	
+});
+
+Route::group(['middleware'	=>	'supervisor'], function(){
+	Route::resource('requirement/assign', 'AssignRequirementController');
+
+	Route::get('requirement/assign/create/{id}', [
+		'as'		=> 'requirement/assign.new',
+		'uses'		=> 'AssignRequirementController@create'
 	]);
 
 	Route::get('/assign', [
@@ -163,60 +176,4 @@ Route::group(['middleware' => 'administrator'], function () {
 		'as'		=> 'analyst.assignment',
 		'uses'		=>	'UsersManagementController@assignAnalysts'
 	]);
-
 });
-
-Route::group(['middleware' 	=> 	'analyst'], function(){
-	
-});
-
-Route::group(['middleware'	=>	'supervisor'], function(){
-	Route::resource('requirement/assign', 'AssignRequirementController', [
-					'only' 	=> [
-						'store',
-						'edit',
-						'update'
-					]]);
-
-	Route::get('requirement/assign/create/{id}', [
-		'as'		=> 'requirement/assign.new',
-		'uses'		=> 'AssignRequirementController@create'
-	]);
-});
-
-// // EDITOR ACCESS LEVEL PAGE ROUTES - RUNNING THROUGH EDITOR MIDDLEWARE
-// Route::group(['middleware' => 'editor'], function () {
-
-// 	//TEST ROUTE ONLY
-// 	Route::get('editor', function () {
-// 	    echo 'Welcome to your EDITOR page '. Auth::user()->email .'.';
-// 	});
-
-// });
-
-//***************************************************************************************//
-//***************************** USER ROUTING EXAMPLES BELOW *****************************//
-//***************************************************************************************//
-
-// //** OPTION - ALL FOLLOWING ROUTES RUN THROUGH AUTHETICATION VIA MIDDLEWARE **//
-// Route::group(['middleware' => 'auth'], function () {
-
-// 	// OPTION - GO DIRECTLY TO TEMPLATE
-// 	Route::get('/', function () {
-// 	    return view('pages.home');
-// 	});
-
-// 	// OPTION - USE CONTROLLER
-// 	Route::get('/', [
-// 	    'as' 			=> 'user',
-// 	    'uses' 			=> 'UsersController@index'
-// 	]);
-
-// });
-
-// //** OPTION - SINGLE ROUTE USING A CONTROLLER AND AUTHENTICATION VIA MIDDLEWARE **//
-// Route::get('/', [
-//     'middleware' 	=> 'auth',
-//     'as' 			=> 'user',
-//     'uses' 			=> 'UsersController@index'
-// ]);

@@ -34,7 +34,7 @@ Actividad
 	<meta itemprop="position" content="1" />
 </li>
 <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-	<a itemprop="item" href="{!! url('/analyst/'.$task->user->name.'/'.$year.'/'.$week) !!}">
+	<a itemprop="item" href="{!! url('/analyst/'.$year.'/'.$month) !!}">
 		<span itemprop="name">
 			Actividades de {{$task->user->first_name.' '.$task->user->last_name}}
 		</span>

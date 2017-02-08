@@ -70,7 +70,7 @@ dialog + .backdrop {
 					<th class="mdl-data-table__cell--non-numeric">Correo Electrónico</th>
 					<th class="mdl-data-table__cell--non-numeric">Teléfono</th>
 					<th class="mdl-data-table__cell--non-numeric">Skype</th>
-					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
+					<!-- <th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th> -->
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -80,16 +80,20 @@ dialog + .backdrop {
 							<td class="mdl-data-table__cell--non-numeric">{{$a_user->email}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_user->profile->phone}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_user->profile->skype_user}}</td>
-							<td class="mdl-data-table__cell--non-numeric">
+							<!-- <td class="mdl-data-table__cell--non-numeric">
 							@if($user->hasRole('usuario'))
 							@if($a_user->hasRole('analista') || $a_user->hasRole('supervisor'))
+								{{-- VIEW ANALYST PROFILE BUTTON --}}
+								<a href="{{ route('profile.show', $a_user->name) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver perfil">
+									<i class="material-icons">person_outline</i>
+								</a>
 								{{-- VIEW TASK ICON BUTTON --}}
 								<a href="{{ url('/analyst/'.$a_user->name.'/'.date('Y', strtotime($date)).'/'.date('W', strtotime($date))) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Ver Actividades">
 									<i class="material-icons">list</i>
 								</a>
 							@endif
 							@endif
-							</td>
+							</td> -->
 						</tr>
 			        @endforeach
 			  </tbody>
@@ -97,6 +101,9 @@ dialog + .backdrop {
 		</div>
 	</div>
     <div class="mdl-card__menu" style="top: -5px;">
+    	<a href="{{ url('/analyst/'.date('Y', strtotime($date)).'/'.date('m', strtotime($date))) }}" class="mdl-button mdl-button--icon mdl-inline-expanded mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color-text--white inline-block" title="Servicio Nominal">
+			<i class="material-icons">list</i>
+		</a>
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable search-white"  style="vertical-align: middle;padding: 17px 0;">
 			<label class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-button--icon" for="search_table">
 			  	<i class="material-icons">search</i>

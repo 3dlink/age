@@ -84,6 +84,7 @@ class UsersManagementController extends Controller {
     {
         return Validator::make($data, [
             'name'          	        => 'required|max:255',
+            'empresa'                   => 'required|max:255',
             'email'         	        => 'required|email|max:255',
             'bio'                       => '',
             'phone'                     => '',
@@ -93,7 +94,8 @@ class UsersManagementController extends Controller {
             'name.required'             => 'Ingrese un nombre de usuario',
             'email.required'            => 'Ingrese un correo electrónico',
             'email.email'               => 'Debe ingresar un correo válido',
-            'user_profile_pic.image'    => 'El archivo debe ser una imagen'
+            'user_profile_pic.image'    => 'El archivo debe ser una imagen',
+            'empresa.required'          => 'Ingrese el nombre de su empresa'
         ]);
     }
 
@@ -107,6 +109,7 @@ class UsersManagementController extends Controller {
     {
         return Validator::make($data, [
             'name'                  => 'required|alpha_num|min:5|max:255|unique:users',
+            'empresa'               => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:users',
             'first_name'            => 'required|max:255',
             'last_name'             => 'required|max:255',
@@ -131,6 +134,29 @@ class UsersManagementController extends Controller {
             'password_confirmation.same'        => 'Sus contraseñas deben coincidir',
             'user_profile_pic.image'            => 'El archivo debe ser una imagen',
             'user_level.required'               => 'Debe seleccionar un nivel de acceso',
+            'empresa.required'                  => 'Ingrese el nombre de su empresa'
+        ]);
+    }
+
+    public function edit_validator(array $data)
+    {
+        return Validator::make($data, [
+            'name'                  => 'required|alpha_num|min:5|max:255|unique:users',
+            'empresa'               => 'required|max:255',
+            'email'                 => 'required|email|max:255',
+            'first_name'            => 'required|max:255',
+            'last_name'             => 'required|max:255',
+            'user_level'            => 'required'
+        ], [
+            'name.required'                     => 'Ingrese un nombre de usuario',
+            'name.max'                          => 'La longitud del nombre de usuario no puede ser mayor a 255 carácteres',
+            'name.unique'                       => 'El nombre de usuario ya existe',
+            'empresa.unique'                    => 'Esta empresa ya existe',
+            'first_name.required'               => 'Ingrese un nombre',
+            'last_name.required'                => 'Ingrese un apellido',
+            'email.required'                    => 'Ingrese un correo electrónico',
+            'user_level.required'               => 'Debe seleccionar un nivel de acceso',
+            'empresa.required'                  => 'Ingrese el nombre de su empresa'
         ]);
     }
 
@@ -182,13 +208,7 @@ class UsersManagementController extends Controller {
      */
     public function update(Request $request, $id)
     {
-
-        $rules = array(
-            'name'              => 'required',
-            'email'             => 'required|email',
-            );
-
-        $validator = $this->validator($request->all(), $rules);
+        $validator = $this->edit_validator($request->all());
 
         if ($validator->fails()) {
             $this->throwValidationException(
@@ -197,6 +217,7 @@ class UsersManagementController extends Controller {
         } else {
             $user 				        = User::find($id);
             $user->name                 = $request->input('name');
+            $user->empresa              = $request->input('empresa');
             $user->first_name           = $request->input('first_name');
             $user->last_name            = $request->input('last_name');
             $user->email                = $request->input('email');
@@ -244,6 +265,7 @@ class UsersManagementController extends Controller {
             $user                   = new User;
             $user->email            = $request->input('email');
             $user->name             = $request->input('name');
+            $user->empresa          = $request->input('empresa');
             $user->first_name       = $request->input('first_name');
             $user->last_name        = $request->input('last_name');
             $userAccessLevel        = $request->input('user_level');

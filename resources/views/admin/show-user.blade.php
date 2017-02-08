@@ -72,7 +72,7 @@
 	<div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
 
 		<div class="mdl-card__title mdl-card--expand mdl-color--primary mdl-color-text--white">
-			<h2 class="mdl-card__title-text">{{$user->name}}'s account</h2>
+			<h2 class="mdl-card__title-text">{{$user->name}}</h2>
 		</div>
 	    <div class="mdl-card card-wide" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 			<div class="mdl-user-avatar">
@@ -113,6 +113,15 @@
 									Actualizado: {{ $user->updated_at }}
 								</div>
 							</li>
+
+							<li class="mdl-list__item mdl-typography--font-light">
+					        	<div class="mdl-list__item-primary-content">
+					        		<i class="material-icons mdl-list__item-icon">location_city</i>
+									<span itemprop="name">
+										{{ $user->empresa }}
+									</span>
+					        	</div>
+					        </li>
 
 					        <li class="mdl-list__item mdl-typography--font-light">
 					        	<div class="mdl-list__item-primary-content">

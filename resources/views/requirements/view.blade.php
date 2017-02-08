@@ -78,6 +78,11 @@ Ticket de Requerimiento
 								</div>
 
 								<div class="mdl-cell mdl-cell--12-col">
+									<label class="mdl-color-text--indigo">Creado el: </label>
+									{{date('d/m/Y', strtotime($requirement->created_at))}}
+								</div>
+
+								<div class="mdl-cell mdl-cell--12-col">
 									<label class="mdl-color-text--indigo">Descripción: </label>
 									<br>
 									{{$requirement->description}}

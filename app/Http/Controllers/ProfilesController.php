@@ -48,6 +48,7 @@ class ProfilesController extends Controller {
         return Validator::make($data, [
             'first_name'            => 'required',
             'last_name'             => 'required',
+            'empresa'               => 'required',
             'bio'                   => '',
             'phone'                 => '',
             'skype_user'            => '',
@@ -55,6 +56,7 @@ class ProfilesController extends Controller {
         ],[
             'first_name.required'       => 'Ingrese un nombre',
             'last_name.required'        => 'Ingrese un apellido',
+            'empresa.required'          => 'Ingrese el nombre de su empresa',
             'user_profile_pic.image'    => 'El archivo debe ser una imagen'
         ]);
     }

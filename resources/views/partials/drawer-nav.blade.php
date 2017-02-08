@@ -5,10 +5,14 @@
 			Material --> {{ Lang::get('titles.app') }}
 		</a>
 		<header class="demo-drawer-header">
-			{{--
-			<img src="{{ Gravatar::get(Auth::user()->email) }}" alt="{{ Auth::user()->name }}" class="demo-avatar">
-			--}}
-			<i class="material-icons mdl-list__item-avatar">face</i>
+			<div class="mdl-user-avatar" style="position: inherit; text-align: center;">
+				@if(\Auth::user()->profile->profile_pic != NULL)
+				<img src="{{ url(\Auth::user()->profile->profile_pic) }}" alt="{{ \Auth::user()->name }}">
+				@else
+				<i class="material-icons mdl-list__item-avatar">face</i>
+				@endif
+				<span itemprop="image" style="display:none;">{{ Gravatar::get(\Auth::user()->email) }}</span>
+			</div>
 			<div class="demo-avatar-dropdown">
 				<span>
 					{{ Auth::user()->name }}
@@ -31,7 +35,11 @@
 			@if (!Auth::guest() && Auth::user()->hasRole('super administrador') || Auth::user()->hasRole('supervisor') || Auth::user()->hasRole('analista'))
 			<a class="mdl-navigation__link" href="{{ route('assignments') }}">
 				<i class="mdl-color-text--cyan-indigo-400 material-icons mdl-badge mdl-badge--overlap" role="presentation">assignment_ind</i>
-				Asignación de Analistas
+				@if (!\Auth::user()->hasRole('analista'))
+				Asignación de Analistas y Clientes
+				@else
+				Clientes Asignados
+				@endif
 			</a>
 
 			<a class="mdl-navigation__link" href="{{ url('/task') }}">

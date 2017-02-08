@@ -41,6 +41,14 @@
 									  	</div>
 
 									  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('empresa') ? 'is-invalid' :'' }}">
+											    {!! Form::text('empresa', old('empresa'), array('id' => 'empresa', 'class' => 'mdl-textfield__input')) !!}
+											    {!! Form::label('empresa', 'Empresa' , array('class' => 'mdl-textfield__label')); !!}
+											    <span class="mdl-textfield__error"></span>
+											</div>
+									  	</div>
+
+									  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label {{ $errors->has('email') ? 'is-invalid' :'' }}">
 									            {!! Form::email('email', null, array('id' => 'email', 'class' => 'mdl-textfield__input' )) !!}
 									            {!! Form::label('email', Lang::get('auth.email') , array('class' => 'mdl-textfield__label')); !!}

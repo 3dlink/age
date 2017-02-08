@@ -49,11 +49,11 @@ dialog + .backdrop {
 	<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 		<h2 class="mdl-card__title-text logo-style">
 			@if ($total_requirements === 1)
-			    {{ $total_requirements }} Requirement Ticket total
+			    {{ $total_requirements }} Ticket de Requerimiento en Total
 			@elseif ($total_requirements > 1)
-			    {{ $total_requirements }} Total Tickets de Requerimiento
+			    {{ $total_requirements }} Tickets de Requerimiento en Total
 			@else
-			    No Tickets de Requerimiento :(
+			    Sin Tickets de Requerimiento :(
 			@endif
 		</h2>
 	</div>
@@ -62,17 +62,21 @@ dialog + .backdrop {
 			<table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
 			  <thead>
 			    <tr>
+			    	<th class="mdl-data-table__cell--non-numeric">#Ticket</th>
 					<th class="mdl-data-table__cell--non-numeric">Asunto</th>
 					<th class="mdl-data-table__cell--non-numeric">Prioridad</th>
 					<!-- <th class="mdl-data-table__cell--non-numeric">Description</th> -->
 					<th class="mdl-data-table__cell--non-numeric">Analista asignado</th>
 					<th class="mdl-data-table__cell--non-numeric">Creado por</th>
+					<th class="mdl-data-table__cell--non-numeric">Fecha de creación</th>
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
 			    </tr>
 			  </thead>
 			  <tbody>
 			        @foreach ($requirements as $a_req)
-						<tr>
+						<tr
+						@if ((\Auth::user()->hasRole('supervisor') || \Auth::user()->hasRole('super administrador')) && empty($a_req->analyst)) style="background-color: aliceblue;" @endif>
+							<td class="mdl-data-table__cell--non-numeric">{{$a_req->id}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_req->subject->subject}}</td>
 							<td class="mdl-data-table__cell--non-numeric">{{$a_req->priority->name}}</td>
 							<!-- <td class="mdl-data-table__cell--non-numeric">{{$a_req->description}}</td> -->
@@ -83,6 +87,7 @@ dialog + .backdrop {
 							Unnasigned
 							@endif
 							<td class="mdl-data-table__cell--non-numeric">{{$a_req->creator->first_name.' '.$a_req->creator->last_name}}</td>
+							<td class="mdl-data-table__cell--non-numeric">{{date('d/m/Y', strtotime($a_req->created_at))}}</td>
 							<td class="mdl-data-table__cell--non-numeric">
 								{{-- DOWNLOAD REQUIREMENT ARCHIVE ICON BUTTON --}}
 								@if(!empty($a_req->archive))

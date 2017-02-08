@@ -15,7 +15,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $user = \Auth::user();
+        if ($user->hasRole('analista') || $user->hasRole('supervisor')) {
+            return redirect(url('/task'));
+        } elseif ($user->hasRole('usuario')) {
+            return redirect(url('/analyst/'.date('Y', strtotime('now')).'/'.date('m', strtotime('now'))));
+        } else {
+            return view('pages.home');
+        }
     }
 
     public function getHome()

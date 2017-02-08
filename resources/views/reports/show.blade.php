@@ -82,7 +82,7 @@ Mostrando Todos los Reportes
 
 
 							{{-- DOWNLOAD REPORT ICON BUTTON --}}
-							<a href="{{ url($a_report->storage) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Descargar Reporte">
+							<a href="{{ url($a_report->storage) }}" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="Descargar Reporte" target="_blank">
 								<i class="material-icons">get_app</i>
 							</a>
 

@@ -25,6 +25,14 @@
 						<ul class="demo-list-icon mdl-list">
 							<li class="mdl-list__item mdl-typography--font-light">
 								<div class="mdl-list__item-primary-content">
+									<i class="material-icons mdl-list__item-icon">location_city</i>
+									<span itemprop="name">
+										{{ $user->empresa }}
+									</span>
+								</div>
+							</li>
+							<li class="mdl-list__item mdl-typography--font-light">
+								<div class="mdl-list__item-primary-content">
 									<i class="material-icons mdl-list__item-icon">person</i>
 									<span itemprop="name">
 										{{ $user->first_name }} @if ($user->last_name) {{ $user->last_name }} @endif

@@ -63,6 +63,7 @@ dialog + .backdrop {
 			  <thead>
 			    <tr>
 					<th class="mdl-data-table__cell--non-numeric">Nombre de Usuario</th>
+					<th class="mdl-data-table__cell--non-numeric">Empresa</th>
 					<th class="mdl-data-table__cell--non-numeric">Correo Electrónico</th>
 					<th class="mdl-data-table__cell--non-numeric">Nivel de Acceso</th>
 					<th class="mdl-data-table__cell--non-numeric no-sort no-search">Acciones</th>
@@ -72,6 +73,7 @@ dialog + .backdrop {
 			        @foreach ($users as $a_user)
 						<tr>
 							<td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $a_user->id) }}">{{$a_user->name}} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $a_user->id) }}">{{$a_user->empresa}} </a></td>
 							<td class="mdl-data-table__cell--non-numeric"><a href="{{ URL::to('users/' . $a_user->id) }}">{{$a_user->email}} </a></td>
 							<td class="mdl-data-table__cell--non-numeric">
 										@if ($a_user->role->id == 4 )

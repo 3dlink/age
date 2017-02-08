@@ -199,7 +199,7 @@ rd-time-list{
 		});
 
 		let cant = document.getElementById('hours');
-		let hourspicker = rome(cant, {date:false, timeFormat: 'H:mm'});
+		let hourspicker = rome(cant, {date:false, timeFormat: 'H:mm', initialValue: '0:00'});
 		hourspicker.on('hide', function(){
 			let t = $('#hours');
 			if (t.val() != "") {

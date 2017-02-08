@@ -171,9 +171,11 @@ class SubjectController extends Controller
     public function destroy($id)
     {
         $subject = Subject::find($id);
-        $subject->priorities()->detach();
-        $subject->delete();
-
-        return redirect('subject')->with('status', 'Asunto eliminado éxitosamente!');
+        if (empty($subject->requirements)) {
+            $subject->priorities()->detach();
+            $subject->delete();
+            return redirect('subject')->with('status', 'Asunto eliminado éxitosamente!');
+        }
+        return redirect('subject')->with('status', 'No se puede eliminar el Asunto');       
     }
 }
