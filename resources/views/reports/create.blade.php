@@ -97,7 +97,7 @@ dialog + .backdrop {
 							  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
 									<div class="file_upload_container">
 									    <div id="file_upload_text_div" class="mdl-textfield mdl-js-textfield">
-											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" accept=".doc, .docx, .pdf"/>
+											<input class="file_upload_text mdl-textfield__input mdl-color-text--white mdl-file-input" type="text" disabled readonly id="file_upload_text" accept=".pdf"/>
 											<label class="mdl-textfield__label profile_pic_label" for="file_upload_text">Archivo de Reporte</label>
 									    </div>
 									    <div class="file_upload_btn">

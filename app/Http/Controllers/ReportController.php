@@ -286,20 +286,18 @@ class ReportController extends Controller
 
     public function getReport($id, $report)
     {
-        // return Image::make(storage_path() . '/users/id/' . $id . '/uploads/images/profile-pics/' . $image)->response();
+        // $file_url = storage_path() . '/users/id/' . $id . '/uploads/reports/' . $report;
+        // header('Content-Type: application/octet-stream');
+        // header("Content-Transfer-Encoding: Binary"); 
+        // header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\"");
+        // readfile($file_url);
 
         $file_url = storage_path() . '/users/id/' . $id . '/uploads/reports/' . $report;
-        header('Content-Type: application/octet-stream');
+        header('Content-Type: application/pdf');
         header("Content-Transfer-Encoding: Binary"); 
-        header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\"");
+        header("Content-disposition: inline; filename=\"" . basename($file_url) . "\"");
+        header('Content-Length: ' . filesize($file_url));
+        header('Accept-Ranges: bytes');
         readfile($file_url);
-
-        // $file_url = storage_path() . '/users/id/' . $id . '/uploads/reports/' . $report;
-        // header('Content-Type: application/pdf');
-        // header("Content-Transfer-Encoding: Binary"); 
-        // header("Content-disposition: inline; filename=\"" . basename($file_url) . "\"");
-        // header('Content-Length: ' . filesize($file_url));
-        // header('Accept-Ranges: bytes');
-        // readfile($file_url);
     }
 }
